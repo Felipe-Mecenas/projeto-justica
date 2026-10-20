@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Justiça ao Alcance de Todos</title>
+<meta name="description" content="Projeto educativo e orientativo: entenda como a Justiça brasileira funciona, se o seu caso cabe no Juizado e como encontrar a Defensoria Pública.">
+<meta property="og:title" content="Justiça ao Alcance de Todos">
+<meta property="og:description" content="A informação é o primeiro passo para o seu direito.">
+<meta property="og:image" content="{{ url_for('static', filename='img/campanha.jpg', _external=True) }}">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#132b4f">
+<link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,800&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 6a3 3 0 0 0 6 0L5 7zm14 0-3 6a3 3 0 0 0 6 0l-3-6z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5a5 5 0 0 1 5 5.5"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M3 10 12 4l9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 13l2 2 4-4"/></symbol>
+</svg>
+
+<div class="strip"><div class="wrap"><strong>Projeto educativo e orientativo.</strong> Não é um site do governo nem do Poder Judiciário.</div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Justiça ao Alcance de Todos, página inicial">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M14 70 A38 38 0 1 1 86 70" fill="none" stroke="var(--gold)" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="50" cy="30" r="9" fill="var(--navy-ink)"/><circle cx="30" cy="40" r="7" fill="var(--navy-ink)"/><circle cx="70" cy="40" r="7" fill="var(--navy-ink)"/>
+        <path d="M34 76c0-14 7-24 16-24s16 10 16 24z" fill="var(--navy-ink)"/>
+        <path d="M18 78c0-11 5-20 12-20 4 0 7 2 9 6-4 4-6 9-6 14z" fill="var(--navy-ink)"/>
+        <path d="M82 78c0-11-5-20-12-20-4 0-7 2-9 6 4 4 6 9 6 14z" fill="var(--navy-ink)"/>
+        <path d="M30 94c10-6 30-4 32-12s-14-8-8-14" fill="none" stroke="var(--gold)" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <span><b>Justiça</b><small>ao alcance de todos</small></span>
+    </a>
+    <div class="search" role="search">
+      <form id="topSearch" autocomplete="off">
+        <input id="q" type="search" placeholder="Buscar: pensão, INSS, prazo…" aria-label="Buscar no site" role="combobox" aria-autocomplete="list" aria-controls="qres" aria-expanded="false">
+        <button type="submit" aria-label="Buscar"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+      </form>
+      <ul class="results" id="qres" role="listbox" aria-label="Resultados da busca" hidden></ul>
+    </div>
+  </div>
+</header>
+
+<nav class="main" aria-label="Seções do site">
+  <div class="wrap">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#justica">Como a Justiça funciona</a></li>
+      <li><a href="#meucaso">Meu caso cabe no Juizado?</a></li>
+      <li><a href="#passos">Primeiros passos</a></li>
+      <li><a href="#defensoria">Defensoria</a></li>
+      <li><a href="#advogado">Seu advogado</a></li>
+      <li><a href="#glossario">Glossário</a></li>
+      <li><a href="#mulheres">Direitos das Mulheres</a></li>
+      <li><a href="#sobre">Sobre nós</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="conteudo" tabindex="-1">
+<!-- ================= INÍCIO ================= -->
+<div data-page="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>A informação é o primeiro passo <em>para o seu direito.</em></h1>
+        <p class="lead">Projeto educativo e orientativo, gratuito e em linguagem simples. Ajudamos você a entender seus caminhos e a encontrar os serviços adequados para buscar seus direitos.</p>
+        <div class="ask">
+          <span class="small" style="color:inherit;opacity:.85">Comece por uma dúvida comum:</span>
+          <div class="chips">
+            <a class="chip" href="#meucaso">Será que tenho direito?</a>
+            <a class="chip" href="#passos-atermacao">Como entro com um processo?</a>
+            <a class="chip" href="#defensoria">Não tenho dinheiro para advogado</a>
+            <a class="chip" href="#passos-docs">Quais documentos levar?</a>
+          </div>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 560 380" role="img" aria-label="Ilustração de uma família de mãos dadas subindo os degraus de um fórum">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b5287"/><stop offset="1" stop-color="#f6c96a"/></linearGradient>
+            <radialGradient id="glow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#fff3c9"/><stop offset="1" stop-color="#fff3c9" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="560" height="380" fill="url(#sky)"/>
+          <circle cx="280" cy="210" r="170" fill="url(#glow)"/>
+          <!-- fórum -->
+          <g fill="#f4efe4">
+            <polygon points="110,120 280,58 450,120"/>
+            <rect x="120" y="120" width="320" height="14"/>
+            <rect x="130" y="134" width="300" height="10" fill="#e5dccb"/>
+            <rect x="148" y="144" width="20" height="132"/><rect x="198" y="144" width="20" height="132"/>
+            <rect x="342" y="144" width="20" height="132"/><rect x="392" y="144" width="20" height="132"/>
+            <rect x="120" y="276" width="320" height="10"/>
+          </g>
+          <polygon points="140,118 280,70 420,118" fill="#e5dccb"/>
+          <g transform="translate(280 100)" stroke="#132b4f" stroke-width="3" fill="none" stroke-linecap="round"><path d="M0-16v28M-14-8h28M-14-8l-7 12a7 6 0 0 0 14 0zM14-8l-7 12a7 6 0 0 0 14 0zM-8 12h16"/></g>
+          <rect x="236" y="168" width="88" height="108" rx="44" ry="44" fill="#ffe7a3"/>
+          <rect x="236" y="212" width="88" height="64" fill="#ffe7a3"/>
+          <g fill="#d9cfbb"><rect x="100" y="286" width="360" height="12"/><rect x="84" y="298" width="392" height="12" fill="#cbbfa8"/><rect x="66" y="310" width="428" height="14" fill="#bcae95"/></g>
+          <rect y="324" width="560" height="56" fill="#9bb07a"/>
+          <path d="M240 380 C 262 350, 276 340, 280 324 L 280 324 C 284 340, 298 350, 320 380Z" fill="#e9dfc8"/>
+          <!-- família (de costas, olhando o fórum) -->
+          <g fill="#132b4f">
+            <circle cx="236" cy="268" r="13"/><path d="M220 334c0-28 6-52 16-52s16 24 16 52z"/>
+            <circle cx="324" cy="262" r="14"/><path d="M306 334c0-30 7-56 18-56s18 26 18 56z"/>
+            <circle cx="280" cy="292" r="9"/><path d="M270 334c0-18 4-32 10-32s10 14 10 32z"/>
+            <circle cx="358" cy="300" r="7"/><path d="M350 334c0-14 3-26 8-26s8 12 8 26z"/>
+          </g>
+          <g stroke="#132b4f" stroke-width="5" stroke-linecap="round"><path d="M250 300 268 310M292 310 308 300M340 300 352 312"/></g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="poster" aria-label="Campanha">
+    <div class="wrap">
+      <img src="{{ url_for('static', filename='img/campanha.jpg') }}" width="800" height="800" loading="lazy" decoding="async" alt="Campanha Justiça ao Alcance de Todos: um homem pensativo com dúvidas sobre seus direitos, diante de um muro de barreiras (informação limitada, burocracia, desconhecimento de direitos, distância, falta de recursos) e um caminho iluminado até o tribunal.">
+    </div>
+  </section>
+
+  <section class="central">
+    <div class="wrap">
+      <div class="center" style="display:grid;gap:.7rem"><h2>Central de Ajuda</h2><div class="rule"></div></div>
+      <div class="acts">
+        <a class="act" href="#meucaso"><span class="dot"><svg class="icon"><use href="#i-scale"/></svg></span><span class="t">Descubra se o seu caso cabe no Juizado<small>3 perguntas, resposta na hora</small></span></a>
+        <a class="act" href="#justica"><span class="dot"><svg class="icon"><use href="#i-build"/></svg></span><span class="t">Entenda como a Justiça brasileira é organizada<small>Quem julga o quê</small></span></a>
+        <a class="act" href="#defensoria"><span class="dot"><svg class="icon"><use href="#i-people"/></svg></span><span class="t">Encontre a Defensoria Pública do seu estado<small>Advogado gratuito</small></span></a>
+        <a class="act" href="#passos-docs"><span class="dot"><svg class="icon"><use href="#i-doc"/></svg></span><span class="t">Saiba quais documentos e provas reunir<small>Antes de ir ao fórum</small></span></a>
+        <a class="act" href="#passos-prazos"><span class="dot"><svg class="icon"><use href="#i-clock"/></svg></span><span class="t">Não perca o prazo<small>Quanto tempo você tem para agir</small></span></a>
+        <a class="act" href="#advogado"><span class="dot"><svg class="icon"><use href="#i-check"/></svg></span><span class="t">Acompanhe seu processo e seu advogado<small>Seus direitos como cliente</small></span></a>
+        <a class="act" href="#passos-estado"><span class="dot"><svg class="icon"><use href="#i-house"/></svg></span><span class="t">Fui prejudicado pelo poder público<small>Prefeitura, Estado, União</small></span></a>
+        <a class="act" href="#glossario"><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span><span class="t">Consulte o glossário<small>As palavras do processo, sem complicação</small></span></a>
+        <a class="act" href="#mulheres"><span class="dot"><svg class="icon"><use href="#i-shield"/></svg></span><span class="t">Direitos das Mulheres<small>Violência doméstica, medida protetiva, Ligue 180</small></span></a>
+        <a class="act" href="#sobre"><span class="dot"><svg class="icon"><use href="#i-q"/></svg></span><span class="t">Conheça o projeto<small>Missão e valores</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="Três coisas para saber">
+    <div class="wrap">
+      <div class="fact"><b>20&nbsp;salários</b><p>Até esse valor, você pode entrar no Juizado Especial Cível sem advogado e sem pagar custas.</p></div>
+      <div class="fact"><b>60&nbsp;salários</b><p>Limite dos Juizados contra o Estado, a Prefeitura ou o governo federal, também sem advogado.</p></div>
+      <div class="fact"><b>R$&nbsp;0</b><p>É quanto custa o atendimento da Defensoria Pública para quem se enquadra nos critérios dela.</p></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="var(--navy-2)" stroke="var(--gold)" stroke-width="3"/>
+        <g transform="translate(50 50) scale(1.6)" stroke="var(--gold)" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M0-16v28M-14-8h28M-14-8l-7 12a7 6 0 0 0 14 0zM14-8l-7 12a7 6 0 0 0 14 0zM-8 12h16"/></g>
+      </svg>
+      <div style="display:grid;gap:1rem">
+        <h2>Nossa missão</h2><div class="rule"></div>
+        <p>Levar informação jurídica clara a quem mais precisa, para que ninguém deixe de buscar um direito por não saber por onde começar.</p>
+        <a class="btn gold" href="#sobre" style="justify-self:start">Conheça nossos valores</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= COMO A JUSTIÇA FUNCIONA ================= -->
+<div data-page="justica" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Como a Justiça funciona</span></nav><h1>Como a Justiça brasileira é organizada</h1><p>O Poder Judiciário é dividido em ramos, e cada um cuida de um tipo de assunto. Saber qual é o seu evita ir ao lugar errado.</p></div></div>
+  <div class="wrap body">
+    <h2 class="secth" id="justica-instancias">Os três degraus de um processo</h2>
+    <div class="stairs">
+      <div class="step"><span class="n">1º</span><div><h3>Primeira instância: o juiz</h3><p>Onde quase todo processo começa. Funciona nas <strong>varas</strong> e nos <strong>juizados</strong> do fórum da sua cidade (a comarca). Um juiz ouve as partes, analisa as provas e dá a sentença.</p></div></div>
+      <div class="step"><span class="n">2º</span><div><h3>Segunda instância: o tribunal</h3><p>Quem perde pode recorrer. O recurso vai para um tribunal, onde um grupo de desembargadores revê a decisão. Nos Juizados, quem revê é a <strong>Turma Recursal</strong>, formada por juízes.</p></div></div>
+      <div class="step"><span class="n">3º</span><div><h3>Tribunais superiores, em Brasília</h3><p>Só alguns casos chegam aqui, quando há discussão sobre a interpretação da lei federal ou da Constituição. Os julgadores são chamados de ministros.</p></div></div>
+    </div>
+
+    <h2 class="secth" id="justica-ramos">Os ramos da Justiça</h2>
+    <div class="ramos">
+      <div class="ramo hl" id="justica-estadual"><span class="kicker">A mais procurada</span><h3>Justiça Estadual</h3><p>Cuida da maior parte dos casos do dia a dia: família, consumidor, aluguel, inventário, crimes comuns e ações contra o Estado e a Prefeitura.</p><p class="path">Varas e Juizados → Tribunal de Justiça (TJ) do estado. No DF, o TJDFT.</p></div>
+      <div class="ramo" id="justica-federal"><h3>Justiça Federal</h3><p>Casos em que a União ou órgãos federais estão envolvidos: INSS, Caixa, Receita Federal, universidades federais.</p><p class="path">Varas e Juizados Federais → Tribunal Regional Federal (TRF). O Brasil tem 6 TRFs.</p></div>
+      <div class="ramo" id="justica-trabalho"><h3>Justiça do Trabalho</h3><p>Conflitos entre trabalhador e patrão: salário atrasado, demissão, carteira assinada, horas extras.</p><p class="path">Varas do Trabalho → Tribunal Regional do Trabalho (TRT) → TST.</p></div>
+      <div class="ramo" id="justica-eleitoral"><h3>Justiça Eleitoral</h3><p>Título de eleitor, alistamento, eleições e registro de candidatos.</p><p class="path">Zonas e juízes eleitorais → Tribunal Regional Eleitoral (TRE) → TSE.</p></div>
+      <div class="ramo" id="justica-militar"><h3>Justiça Militar</h3><p>Crimes militares cometidos por integrantes das Forças Armadas e, nos estados, das polícias militares e bombeiros.</p><p class="path">Auditorias militares → Superior Tribunal Militar (STM).</p></div>
+    </div>
+
+    <h2 class="secth" id="justica-superiores">Tribunais superiores e o CNJ</h2>
+    <div class="superiores">
+      <div class="sup"><b>STF</b><p>Supremo Tribunal Federal. Guarda a Constituição. 11 ministros.</p></div>
+      <div class="sup"><b>STJ</b><p>Superior Tribunal de Justiça. Uniformiza a interpretação das leis federais.</p></div>
+      <div class="sup"><b>TST</b><p>Tribunal Superior do Trabalho. Última palavra nas causas trabalhistas.</p></div>
+      <div class="sup"><b>TSE</b><p>Tribunal Superior Eleitoral. Comanda a Justiça Eleitoral.</p></div>
+      <div class="sup"><b>STM</b><p>Superior Tribunal Militar. Revê os casos da Justiça Militar da União.</p></div>
+      <div class="sup"><b>CNJ</b><p>Conselho Nacional de Justiça. Não julga processos: fiscaliza o funcionamento do Judiciário e recebe reclamações pela Ouvidoria.</p></div>
+    </div>
+
+    <h2 class="secth" id="justica-funcoes">Quem mais trabalha pela Justiça</h2>
+    <p>Estas instituições não são o Judiciário, mas são essenciais para que ele funcione. A Constituição as chama de <em>funções essenciais à Justiça</em>.</p>
+    <div class="cards">
+      <div class="card"><h3>Ministério Público</h3><p>Defende os interesses da sociedade. Acusa nos crimes, fiscaliza o poder público e protege crianças, idosos e o meio ambiente. Há o MP de cada estado, o do DF e Territórios (MPDFT) e o MP da União.</p></div>
+      <div class="card"><h3>Defensoria Pública</h3><p>Dá orientação e defesa gratuita a quem não pode pagar advogado. <a href="#defensoria">Saiba como procurar</a>.</p></div>
+      <div class="card"><h3>Advocacia Pública</h3><p>Defende o governo nos processos: a AGU pela União e as procuradorias pelos estados e municípios. Quando você processa a Prefeitura, é a procuradoria que responde.</p></div>
+      <div class="card"><h3>Advocacia</h3><p>Advogados particulares, inscritos na OAB. Podem ser contratados ou nomeados pelo juiz (advogado dativo).</p></div>
+    </div>
+    <p class="notice"><strong>Não confunda:</strong> delegacia, Procon e cartório não fazem parte do Judiciário. Eles ajudam a resolver problemas, mas quem julga é sempre um juiz.</p>
+  </div>
+</div>
+
+<!-- ================= MEU CASO ================= -->
+<div data-page="meucaso" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Meu caso cabe no Juizado?</span></nav><h1>Meu caso cabe no Juizado?</h1><p>Responda três perguntas. Você vê para onde esse tipo de caso costuma ir e se precisa de advogado.</p></div></div>
+  <div class="wrap narrow body">
+    <form class="quiz" id="quiz">
+      <fieldset>
+        <legend>1. Contra quem é o seu pedido?</legend>
+        <label class="opt"><input type="radio" name="contra" id="c-pe" value="pe"> Uma pessoa ou uma empresa (loja, banco, operadora, vizinho)</label>
+        <label class="opt"><input type="radio" name="contra" id="c-fz" value="fz"> O Estado, o Distrito Federal ou a Prefeitura</label>
+        <label class="opt"><input type="radio" name="contra" id="c-fed" value="fed"> O governo federal: INSS, Caixa, Receita, universidade federal</label>
+      </fieldset>
+      <fieldset>
+        <legend>2. Sobre o que é?</legend>
+        <label class="opt"><input type="radio" name="tipo" id="t-ok" value="ok"> Dinheiro, indenização, cobrança errada, serviço mal prestado, benefício negado</label>
+        <label class="opt"><input type="radio" name="tipo" id="t-fam" value="fam"> Família: pensão, divórcio, guarda, inventário</label>
+        <label class="opt"><input type="radio" name="tipo" id="t-trab" value="trab"> Trabalho: salário, demissão, carteira assinada</label>
+      </fieldset>
+      <fieldset>
+        <legend>3. Quanto você está pedindo, mais ou menos?</legend>
+        <label class="opt"><input type="radio" name="valor" id="v1" value="20"> Até 20&nbsp;salários mínimos (até R$&nbsp;32.420)</label>
+        <label class="opt"><input type="radio" name="valor" id="v2" value="40"> Entre 20 e 40&nbsp;salários mínimos (até R$&nbsp;64.840)</label>
+        <label class="opt"><input type="radio" name="valor" id="v3" value="60"> Entre 40 e 60&nbsp;salários mínimos (até R$&nbsp;97.260)</label>
+        <label class="opt"><input type="radio" name="valor" id="v4" value="mais"> Mais de 60&nbsp;salários mínimos</label>
+        <label class="opt"><input type="radio" name="valor" id="v5" value="ns"> Não sei</label>
+        <p class="small">Valores com o salário mínimo de 2026 (R$&nbsp;1.621). Confira o valor atual.</p>
+      </fieldset>
+      <div id="resultado" class="result warn" aria-live="polite"><strong>Responda as três perguntas</strong><p>O resultado aparece aqui.</p></div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= PRIMEIROS PASSOS ================= -->
+<div data-page="passos" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Primeiros passos</span></nav><h1>Primeiros passos</h1><p>O que você precisa saber antes de ir ao fórum. Toque em cada assunto para abrir.</p></div></div>
+  <div class="wrap narrow body">
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Tabela dos Juizados">
+      <table>
+        <caption class="sr">Juizados: contra quem, limite de valor e quando dispensam advogado</caption>
+        <thead><tr><th>Juizado</th><th>Contra quem</th><th>Limite</th><th>Sem advogado?</th></tr></thead>
+        <tbody>
+          <tr><td>Especial Cível</td><td>Pessoas e empresas</td><td class="num">40 SM</td><td>Até 20 SM. De 20 a 40 SM, precisa de advogado.</td></tr>
+          <tr><td>Da Fazenda Pública</td><td>Estado, DF, Município</td><td class="num">60 SM</td><td>Sim, na primeira fase.</td></tr>
+          <tr><td>Especial Federal</td><td>União, INSS, Caixa</td><td class="num">60 SM</td><td>Sim, na primeira fase.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">SM = salário mínimo. Leis 9.099/1995, 12.153/2009 e 10.259/2001.</p>
+    <div class="acc">
+      <details id="passos-atermacao"><summary>Como entro com o pedido sem advogado (atermação)</summary><p>No balcão do Juizado, e em alguns tribunais pela internet, um servidor escreve o pedido a partir do seu relato. Chegue com os fatos em ordem de datas e com os documentos em mãos. Você recebe o número do processo e a data da audiência.</p></details>
+      <details id="passos-docs"><summary>Quais documentos e provas reunir</summary><ul><li>RG, CPF e comprovante de residência</li><li>Contratos, notas fiscais, boletos, recibos</li><li>Fotos, vídeos, prints de conversas, e-mails</li><li>Protocolos de reclamação (SAC, Procon, ouvidoria)</li><li>Nome e contato de testemunhas</li><li>Um resumo escrito do que aconteceu, com datas</li></ul></details>
+      <details id="passos-prazos"><summary>Prazos que você não pode perder</summary>
+        <div class="prazos">
+          <div class="prazo"><b>5&nbsp;anos</b><p>Para processar o poder público, contados do fato.</p></div>
+          <div class="prazo"><b>3&nbsp;anos</b><p>Em geral, para pedir indenização de pessoa ou empresa. Consumo tem regras próprias.</p></div>
+          <div class="prazo"><b>10&nbsp;dias</b><p>Para recorrer da sentença no Juizado. <strong>Aqui o advogado é obrigatório.</strong></p></div>
+          <div class="prazo"><b>5&nbsp;dias</b><p>Para pedir que o juiz esclareça uma decisão (embargos de declaração).</p></div>
+        </div>
+        <p class="small" style="margin-top:.6rem">No Juizado, os prazos do processo contam só dias úteis.</p>
+      </details>
+      <details id="passos-custos"><summary>Quanto custa</summary><p>No Juizado, a primeira fase não tem custas. Fora dele, quem não pode pagar pode pedir a <strong>gratuidade da Justiça</strong> (CPC, arts. 98 a 102), com uma declaração de que não tem condições de arcar com as despesas. Quem decide se concede é o juiz, de acordo com cada caso. Gratuidade não é o mesmo que ter advogado gratuito: <a href="#def-conceitos">entenda a diferença</a>.</p></details>
+      <details id="passos-audiencia"><summary>Como funciona a audiência</summary><p>A primeira audiência é de conciliação, para tentar um acordo. <strong>Se você faltar</strong>, o processo é encerrado. <strong>Se a outra parte faltar</strong>, ela sofre revelia e o que você disse tende a ser aceito.</p></details>
+      <details id="passos-naojuizado"><summary>O que não vai para o Juizado</summary><ul><li>Família: pensão, divórcio, guarda</li><li>Inventário e partilha de bens</li><li>Causas trabalhistas</li><li>Casos complexos que exigem perícia</li></ul></details>
+      <details id="passos-estado"><summary>Fui prejudicado pelo poder público</summary>
+        <p>Buraco na rua que estragou o carro, erro em hospital público, concurso anulado sem motivo. A Constituição (art. 37, § 6º) diz que o poder público responde pelos danos que seus agentes causam, <strong>mesmo sem culpa</strong>. Você precisa mostrar três coisas: <strong>o fato</strong> (o que o serviço público fez), <strong>o dano</strong> (o prejuízo sofrido) e <strong>o nexo causal</strong> (a ligação entre os dois).</p>
+        <p style="margin-top:.6rem">O Estado pode se livrar da responsabilidade se provar culpa exclusiva da vítima, caso fortuito ou força maior, ou culpa de outra pessoa. Quando o problema é algo que o Estado <em>deixou de fazer</em>, costuma ser preciso mostrar que ele tinha o dever de agir e falhou. Prazo: 5 anos.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DEFENSORIA ================= -->
+<div data-page="defensoria" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Defensoria</span></nav><h1>Defensoria Pública</h1><p>Advogados públicos que orientam, tentam acordos e entram com processos, sem cobrar nada, para quem não pode pagar.</p></div></div>
+  <div class="wrap body">
+    <div class="card" style="background:var(--bg-alt)">
+      <h3>Encontre a Defensoria do seu estado</h3>
+      <div class="row"><label for="uf" class="small">Estado</label><select id="uf"></select><a class="btn gold" id="ufLink" href="https://www.dpu.def.br/" target="_blank" rel="noopener">Abrir site</a></div>
+      <p class="small">Confirme sempre que está no endereço oficial (terminado em .def.br ou .gov.br).</p>
+    </div>
+    <h2 class="secth" id="def-conceitos" style="font-size:1.4rem">Três ideias que não são a mesma coisa</h2>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Tabela de conceitos">
+      <table>
+        <caption class="sr">Diferença entre acesso à Justiça, gratuidade e assistência jurídica gratuita</caption>
+        <thead><tr><th>Conceito</th><th>O que significa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Acesso à Justiça</strong></td><td>A possibilidade de buscar proteção para um direito ou resolver um conflito pelos meios adequados. É garantido a todos (Constituição, art. 5º, XXXV).</td></tr>
+          <tr><td><strong>Gratuidade da Justiça</strong></td><td>Benefício dentro do processo que pode dispensar o pagamento de custas e despesas, conforme os requisitos da lei (CPC, arts. 98 a 102). Quem decide é o juiz.</td></tr>
+          <tr><td><strong>Assistência jurídica gratuita</strong></td><td>Orientação e defesa feitas de graça para quem não pode pagar, principalmente pela Defensoria Pública (Constituição, art. 5º, LXXIV, e art. 134).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Você pode precisar de orientação antes mesmo de saber se tem direito à gratuidade ou se deve entrar com uma ação. Este site ajuda nesse primeiro momento.</p>
+    <p><strong>Existem duas Defensorias diferentes.</strong> Procurar a errada é o erro mais comum.</p>
+    <div class="cards">
+      <div class="card" id="def-dpu"><span class="kicker">Federal</span><h3>Defensoria Pública da União (DPU)</h3><ul><li>INSS: aposentadoria, auxílio-doença, BPC/LOAS</li><li>Caixa: FGTS e programas habitacionais</li><li>Benefícios e remédios cobrados da União</li></ul><p class="small">Renda familiar de até 2 salários mínimos (regra de 2026). Também atende quem recebe Bolsa Família.</p></div>
+      <div class="card" id="def-estadual"><span class="kicker">Estadual e DF</span><h3>Defensoria do Estado ou do DF</h3><ul><li>Família, pensão, divórcio, guarda, inventário</li><li>Consumidor e moradia</li><li>Ações contra o Estado ou a Prefeitura</li><li>Defesa criminal e violência doméstica</li></ul><p class="small">Cada estado define seu limite. No DF, a referência é renda familiar de até 5 salários mínimos.</p></div>
+    </div>
+    <div class="acc">
+      <details id="def-naoatua"><summary>Quando a Defensoria não atua</summary><ul><li>Renda acima do limite, sem outra situação de vulnerabilidade</li><li>Esfera errada: a DPU não cuida de divórcio; a estadual não cuida do INSS</li><li>Você já tem advogado particular no mesmo processo</li><li>Pedido sem base na lei (você pode pedir o motivo e solicitar revisão)</li><li>Empresas, em regra</li></ul></details>
+      <details><summary>Ganho um pouco acima do limite. Posso tentar?</summary><p>Sim. O defensor pode considerar gastos altos com saúde e outras dificuldades. Mulheres em situação de violência doméstica, idosos e pessoas com deficiência costumam ter atendimento facilitado.</p></details>
+      <details><summary>Não tem Defensoria na minha cidade</summary><ul><li>Núcleos de prática jurídica de faculdades de Direito</li><li>Atermação direta no Juizado</li><li>Advogado dativo, nomeado pelo juiz</li></ul></details>
+      <details id="def-docs"><summary>O que levar no atendimento</summary><ul><li>RG, CPF e comprovante de residência</li><li>Comprovante de renda de todos que moram na casa</li><li>Todos os papéis ligados ao caso</li><li>Um resumo escrito dos fatos, com datas</li></ul></details>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ADVOGADO ================= -->
+<div data-page="advogado" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Seu advogado</span></nav><h1>Acompanhe seu processo e seu advogado</h1><p>Ter advogado não significa ficar no escuro. Você tem o direito de saber o que acontece no seu processo.</p></div></div>
+  <div class="wrap narrow body">
+    <h2 class="secth" style="font-size:1.4rem">Marque o que você já tem</h2>
+    <div class="check" id="checklist">
+      <label><input type="checkbox" id="k1"><span><strong>Conferi a inscrição do advogado</strong> no <a href="https://cna.oab.org.br/" target="_blank" rel="noopener">Cadastro Nacional dos Advogados<span class="sr"> (abre em nova aba)</span></a>, da OAB.</span></label>
+      <label><input type="checkbox" id="k2"><span><strong>Tenho o contrato de honorários por escrito</strong>: quanto, quando e sobre qual valor.</span></label>
+      <label><input type="checkbox" id="k3"><span><strong>Tenho cópia da procuração</strong> e li se ela dá poder para “receber e dar quitação”. Se der, o advogado pode sacar o dinheiro em seu nome.</span></label>
+      <label><input type="checkbox" id="k4"><span><strong>Sei o número do processo</strong> e consigo consultar o andamento no site do tribunal.</span></label>
+      <label><input type="checkbox" id="k5"><span><strong>Recebo recibo</strong> de todo valor que pago ou que o advogado recebe por mim.</span></label>
+    </div>
+    <p class="small" id="checkStatus" aria-live="polite"></p>
+    <div class="acc">
+      <details id="adv-alerta"><summary>Sinais de alerta</summary><ul><li>Não informa o número do processo</li><li>Não mostra documentos nem decisões</li><li>Pede dinheiro “por fora”, sem recibo</li><li>Só conversa com uma pessoa da família, quando o caso é de todos</li><li>Diz que “o dinheiro ainda não saiu” sem mostrar o andamento</li></ul></details>
+      <details id="adv-direitos"><summary>Seus direitos e onde reclamar</summary><p>O advogado é obrigado a prestar contas do dinheiro que recebe em seu nome. Recusar isso é infração ética. A reclamação vai para o <strong>Tribunal de Ética e Disciplina da OAB</strong> do seu estado.</p></details>
+      <details id="adv-inventario"><summary>Inventário: o que a família precisa saber</summary><ul><li>Se todos os herdeiros concordam, o inventário pode ser feito <strong>em cartório</strong>, mais rápido e barato.</li><li>Mesmo no cartório, o advogado é obrigatório. Cada herdeiro pode ter o seu.</li><li>Deve ser aberto em até <strong>2 meses</strong> após o falecimento. O atraso pode gerar multa no imposto (ITCMD).</li><li>Na Defensoria, quando há conflito entre parentes, a renda de cada um é avaliada separadamente.</li></ul></details>
+      <details id="adv-ia" open><summary>Use a inteligência artificial para entender seus papéis</summary>
+        <p>Cole uma decisão ou documento numa ferramenta de IA com o texto abaixo:</p>
+        <div class="prompt" id="promptTxt" style="margin-top:.6rem">Vou colar abaixo um documento do meu processo. Explique em linguagem simples, como se eu nunca tivesse estudado Direito:
+1. O que esse documento diz e o que muda para mim.
+2. Se existe algum prazo e até quando.
+3. Quais perguntas eu devo fazer ao meu advogado ou defensor.
+Não invente informações. Se algo não estiver claro no texto, diga.
+
+[cole o documento aqui]</div>
+        <div class="row" style="margin-top:.6rem"><button class="btn line" type="button" id="copyBtn">Copiar texto</button><span class="small" id="copyMsg" aria-live="polite"></span></div>
+        <p class="small" style="margin-top:.5rem"><strong>Cuidado:</strong> a IA pode errar. Use as respostas para fazer boas perguntas. Antes de colar, apague CPF, RG, endereço e dados bancários.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- ================= GLOSSÁRIO ================= -->
+<div data-page="glossario" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Glossário</span></nav><h1>Glossário</h1><p>As palavras que aparecem no processo, explicadas sem complicação.</p></div></div>
+  <div class="wrap narrow body">
+    <div class="row"><input class="plain" type="search" id="gbusca" placeholder="Procurar uma palavra" aria-label="Procurar no glossário" style="flex:1"></div>
+    <div class="letters" id="letters"></div>
+    <dl class="glos" id="glos"></dl>
+    <p id="semres" class="small" hidden>Nenhuma palavra encontrada.</p>
+  </div>
+</div>
+
+<!-- ================= MULHERES ================= -->
+<div data-page="mulheres" hidden>
+  <button type="button" class="exit" id="saidaRapida" aria-label="Sair rápido deste site">Sair rápido ✕</button>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Direitos das Mulheres</span></nav><h1>Direitos das Mulheres</h1><p>Violência contra a mulher é crime. Você não está sozinha, e existem serviços gratuitos para proteger você, independentemente da sua renda.</p></div></div>
+  <div class="wrap body">
+    <div class="sos" role="note">
+      <div><b>190</b><p>Polícia Militar. Ligue se estiver em perigo agora.</p></div>
+      <div><b>180</b><p>Central de Atendimento à Mulher. Gratuita, 24 horas, anônima. Orienta e encaminha.</p></div>
+      <div><b>X</b><p>Um X vermelho na palma da mão, mostrado em farmácias e outros locais parceiros, é um pedido silencioso de socorro (Sinal Vermelho, Lei 14.188/2021).</p></div>
+    </div>
+    <p class="small">Se alguém mexe no seu celular ou computador, use o botão <strong>Sair rápido</strong> e apague o histórico do navegador depois.</p>
+
+    <h2 class="secth" id="mulheres-formas">As 5 formas de violência (Lei Maria da Penha)</h2>
+    <p>A Lei 11.340/2006 protege a mulher contra a violência praticada em casa, na família ou numa relação de afeto, atual ou passada, mesmo sem morar junto. Violência não é só agressão física:</p>
+    <div class="cards">
+      <div class="card"><h3>Física</h3><p>Empurrões, tapas, socos, chutes, apertões, queimaduras, qualquer ofensa ao corpo.</p></div>
+      <div class="card"><h3>Psicológica</h3><p>Ameaças, humilhações, controle de roupas e amizades, isolamento, vigiar o celular, perseguir. Também é crime (Código Penal, arts. 147-A e 147-B).</p></div>
+      <div class="card"><h3>Sexual</h3><p>Forçar relação ou atos sexuais, impedir o uso de método contraceptivo, forçar gravidez ou aborto.</p></div>
+      <div class="card"><h3>Patrimonial</h3><p>Reter ou destruir documentos, celular, roupas, dinheiro ou instrumentos de trabalho. Controlar seu salário.</p></div>
+      <div class="card"><h3>Moral</h3><p>Calúnia, difamação e injúria: inventar mentiras, expor ou xingar para humilhar você.</p></div>
+    </div>
+
+    <h2 class="secth" id="mulheres-medida">Medida protetiva de urgência</h2>
+    <p>É uma ordem do juiz para proteger você. Pode, por exemplo, afastar o agressor de casa, proibir que ele se aproxime ou entre em contato, e suspender a posse de arma.</p>
+    <div class="acc">
+      <details id="mulheres-pedir"><summary>Como pedir</summary><ul><li>Na delegacia (de preferência a Delegacia da Mulher, a DEAM), na Defensoria Pública ou no Ministério Público.</li><li><strong>Não precisa de advogado</strong> nem pagar nada.</li><li>O juiz deve decidir em até 48 horas.</li><li>A medida pode ser concedida mesmo sem boletim de ocorrência ou processo criminal aberto (Lei 14.550/2023).</li><li>Em muitos estados, o pedido e o boletim podem ser feitos pela delegacia online.</li></ul></details>
+      <details id="mulheres-descumprir"><summary>E se ele descumprir a medida?</summary><p>Descumprir medida protetiva é crime, com pena de 2 a 5 anos de prisão. Ligue 190 na hora e informe que existe medida protetiva. Guarde prints, áudios e nomes de testemunhas.</p></details>
+      <details id="mulheres-provas"><summary>Como guardar provas com segurança</summary><ul><li>Fotos das lesões e de objetos quebrados, com data.</li><li>Prints de mensagens e áudios, de preferência enviados para um e-mail ou pessoa de confiança.</li><li>Laudo do exame de corpo de delito (a delegacia encaminha).</li><li>Atestados e registros de atendimento em hospital ou posto de saúde.</li><li>Nome e contato de quem viu ou ouviu.</li></ul></details>
+      <details id="mulheres-plano"><summary>Plano de segurança</summary><ul><li>Combine uma palavra-código com alguém de confiança para pedir ajuda.</li><li>Deixe documentos, cópia das chaves, remédios e algum dinheiro num lugar seguro ou com outra pessoa.</li><li>Saiba onde fica a DEAM ou a delegacia mais próxima.</li><li>Ensine às crianças a ligar 190.</li></ul></details>
+    </div>
+
+    <h2 class="secth" id="mulheres-feminicidio">Feminicídio</h2>
+    <p>É matar uma mulher por ela ser mulher, em situação de violência doméstica ou de menosprezo e discriminação à condição de mulher. Desde a Lei 14.994/2024, é um crime próprio no Código Penal (art. 121-A), com pena de <strong>20 a 40 anos</strong>, uma das maiores da lei brasileira.</p>
+    <p class="notice"><strong>Sinais de risco que pedem ajuda imediata:</strong> ameaças de morte, tentativa de enforcamento, acesso a arma, ciúme extremo, perseguição, agressões que aumentam de frequência e não aceitar o fim do relacionamento. Se você reconhece esses sinais, ligue 180 ou procure a delegacia ou a Defensoria.</p>
+
+    <h2 class="secth" id="mulheres-onde">Onde buscar ajuda</h2>
+    <div class="cards">
+      <div class="card"><h3>Delegacia da Mulher (DEAM)</h3><p>Registra a ocorrência e encaminha o pedido de medida protetiva. Na falta dela, qualquer delegacia deve atender.</p></div>
+      <div class="card"><h3>Casa da Mulher Brasileira</h3><p>Reúne num só lugar delegacia, Defensoria, Ministério Público, juizado e apoio psicossocial. Existe em várias capitais.</p></div>
+      <div class="card"><h3>Defensoria Pública</h3><p>Núcleos especializados atendem mulheres em situação de violência, inclusive para divórcio, guarda e pensão. Costuma atender mesmo acima do limite de renda. <a href="#defensoria">Encontre a sua</a>.</p></div>
+      <div class="card"><h3>CREAS e CRAS</h3><p>Serviços da assistência social do seu município: acolhimento, acompanhamento e acesso a benefícios.</p></div>
+    </div>
+    <p class="small">Legislação: Lei 11.340/2006 (Maria da Penha), Lei 14.188/2021, Lei 14.550/2023, Lei 14.994/2024 e Código Penal, arts. 121-A, 147-A e 147-B. Conteúdo educativo e orientativo: em caso de dúvida, procure os serviços acima.</p>
+  </div>
+</div>
+
+<!-- ================= SOBRE ================= -->
+<div data-page="sobre" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Sobre nós</span></nav><h1>Sobre o projeto</h1><p>Justiça ao Alcance de Todos nasceu de uma experiência real: ganhar uma ação contra uma prefeitura e perceber quantas pessoas não sabem que também podem buscar seus direitos.</p></div></div>
+  <div class="wrap body">
+    <div class="campanha">
+      <img src="{{ url_for('static', filename='img/campanha.jpg') }}" width="800" height="800" loading="lazy" alt="Campanha Justiça ao Alcance de Todos: um homem pensativo diante de um muro com as palavras informação limitada, burocracia, desconhecimento de direitos, distância e falta de recursos, e um caminho iluminado até o tribunal.">
+      <div style="display:grid;gap:1rem">
+        <h2 class="secth">Nossa missão</h2><div class="rule"></div>
+        <p>Levar informação jurídica clara a quem mais precisa, para que ninguém deixe de buscar um direito por não saber por onde começar.</p>
+        <p>O muro entre as pessoas e a Justiça é feito de informação limitada, burocracia, distância e falta de recursos. A informação é a parte desse muro que podemos derrubar.</p>
+      </div>
+    </div>
+    <h2 class="secth">Nossos valores</h2>
+    <div class="cards">
+      <div class="card"><h3>Linguagem simples</h3><p>Escrevemos para quem nunca entrou num fórum. Se uma palavra técnica for necessária, explicamos.</p></div>
+      <div class="card"><h3>Honestidade</h3><p>Somos um guia educativo. Dizemos com clareza o que o site faz e quando é preciso procurar um defensor ou advogado.</p></div>
+      <div class="card"><h3>Independência</h3><p>Não vendemos serviços jurídicos nem indicamos advogados. Nosso único interesse é que você conheça seus direitos.</p></div>
+      <div class="card"><h3>Respeito</h3><p>Tratamos cada dúvida com seriedade, sem julgamento, e não guardamos seus dados pessoais.</p></div>
+    </div>
+    <h2 class="secth" id="sobre-base">Base legal</h2>
+    <p>O Justiça ao Alcance de Todos tem finalidade educativa e orientativa. Seu objetivo é ampliar o acesso à informação jurídica, ajudando pessoas em situação de vulnerabilidade econômica a compreender seus direitos, conhecer os caminhos para buscar a Justiça e identificar os serviços públicos de assistência jurídica gratuita. Nossa orientação se fundamenta, especialmente, nestas normas:</p>
+    <div class="cards">
+      <div class="card"><span class="kicker">1</span><h3>Constituição Federal de 1988</h3><ul><li><strong>Art. 5º, XXXV:</strong> acesso ao Judiciário diante de lesão ou ameaça a direito.</li><li><strong>Art. 5º, LXXIV:</strong> assistência jurídica integral e gratuita a quem comprovar insuficiência de recursos.</li><li><strong>Art. 134:</strong> organização e atribuições da Defensoria Pública.</li></ul></div>
+      <div class="card"><span class="kicker">2</span><h3>Código de Processo Civil</h3><p>Lei nº 13.105/2015, <strong>arts. 98 a 102</strong>: gratuidade da Justiça, requisitos, pedido e decisão.</p></div>
+      <div class="card"><span class="kicker">3</span><h3>Lei Complementar nº 80/1994</h3><p>Organização e atribuições da Defensoria Pública, responsável pela orientação jurídica e pela defesa integral e gratuita dos necessitados.</p></div>
+      <div class="card"><span class="kicker">4</span><h3>Juizados Especiais</h3><ul><li><strong>Lei nº 9.099/1995:</strong> Juizados Cíveis e Criminais estaduais.</li><li><strong>Lei nº 10.259/2001:</strong> Juizados Federais.</li><li><strong>Lei nº 12.153/2009:</strong> Juizados da Fazenda Pública.</li></ul></div>
+      <div class="card"><span class="kicker">5</span><h3>Legislação complementar</h3><ul><li><strong>Decreto nº 20.910/1932:</strong> prazo de prescrição contra a Fazenda Pública.</li><li><strong>Lei nº 8.906/1994:</strong> Estatuto da Advocacia e da OAB.</li></ul></div>
+    </div>
+    <h2 class="secth" id="sobre-natureza">Natureza do projeto</h2>
+    <div class="cards">
+      <div class="card"><h3>O que fazemos</h3><ul><li>Explicamos direitos, procedimentos e serviços públicos em linguagem simples.</li><li>Ajudamos você a entender seus caminhos.</li><li>Indicamos onde encontrar os serviços adequados.</li></ul></div>
+      <div class="card"><h3>O que não fazemos</h3><ul><li>Não concedemos gratuidade da Justiça.</li><li>Não prometemos advogado gratuito, vitória judicial ou benefício automático.</li><li>Não garantimos a aceitação de pedidos judiciais.</li><li>Não substituímos a Defensoria Pública, a advocacia ou as decisões das autoridades.</li></ul></div>
+    </div>
+    <p>A concessão da gratuidade e a definição da assistência jurídica cabível dependem das circunstâncias de cada caso e das regras aplicáveis. Nosso compromisso é tornar a informação jurídica mais acessível, para que a falta de conhecimento não seja mais um obstáculo na busca por direitos.</p>
+    <p class="notice"><strong>Este é um projeto educativo e orientativo.</strong> Explicamos como a Justiça funciona e para onde ir, mas não analisamos casos concretos nem prestamos consultoria jurídica, que é atividade exclusiva de advogados e defensores públicos. As informações são gerais e podem mudar. Conteúdo revisado em outubro de 2026.</p>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Justiça ao Alcance de Todos</h3><p><em>A informação é o primeiro passo para o seu direito.</em></p><p style="margin-top:.5rem">Projeto educativo e orientativo. Não substitui a orientação de um defensor público ou advogado.</p></div>
+    <div><h3>Comece aqui</h3><ul><li><a href="#meucaso">Meu caso cabe no Juizado?</a></li><li><a href="#justica">Como a Justiça funciona</a></li><li><a href="#defensoria">Encontre a Defensoria</a></li></ul></div>
+    <div><h3>Base legal</h3><p>Constituição Federal (art. 5º, XXXV e LXXIV; arts. 37 e 134), CPC (arts. 98 a 102), LC 80/1994, Leis 9.099/1995, 10.259/2001 e 12.153/2009, Decreto 20.910/1932 e Lei 8.906/1994. <a href="#sobre-base">Ver detalhes</a>.</p></div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

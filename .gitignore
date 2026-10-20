@@ -1,0 +1,11 @@
+# Ambiente virtual e caches do Python
+.venv/
+__pycache__/
+*.pyc
+
+# Configurações locais (não compartilhar)
+.env
+.claude/settings.local.json
+
+# Capturas e snapshots dos testes com Playwright
+.playwright-mcp/
