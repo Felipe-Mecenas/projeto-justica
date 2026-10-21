@@ -3,6 +3,7 @@
 - .js   -> node --check
 - .py   -> py_compile
 - .py, .html (templates) -> carrega "/" pelo test client do Flask e exige 200
+- .html, .js -> roda tests/test_site.py (links internos, h1 de cada página, nada de terceiros)
 
 Se algo falhar, sai com código 2: o erro volta para o Claude corrigir.
 """
@@ -55,6 +56,13 @@ def main():
                 erros.append(f"GET / devolveu {resp.status_code} depois de editar {arq.name}.")
         except Exception as e:  # erro de Jinja, import quebrado etc.
             erros.append(f"O site não carregou depois de editar {arq.name}:\n{type(e).__name__}: {e}")
+
+    # link interno quebrado não dá erro nenhum no navegador; só o teste pega
+    if not erros and arq.suffix in (".html", ".js"):
+        r = subprocess.run([sys.executable, "-m", "unittest", "tests.test_site"], cwd=RAIZ,
+                           capture_output=True, text=True, encoding="utf-8")
+        if r.returncode:
+            erros.append(f"Os testes do site falharam depois de editar {arq.name}:\n{r.stderr.strip()[-2000:]}")
 
     if erros:
         print("\n\n".join(erros), file=sys.stderr)

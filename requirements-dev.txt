@@ -1,0 +1,3 @@
+# Só para desenvolvimento e testes; a hospedagem usa requirements.txt
+-r requirements.txt
+playwright==1.64.0

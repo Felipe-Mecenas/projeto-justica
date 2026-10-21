@@ -11,9 +11,6 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#132b4f">
 <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,800&display=swap">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -32,6 +29,9 @@
   <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></symbol>
   <symbol id="i-house" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 13l2 2 4-4"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
 </svg>
 
 <div class="strip"><div class="wrap"><strong>Projeto educativo e orientativo.</strong> Não é um site do governo nem do Poder Judiciário.</div></div>
@@ -61,16 +61,39 @@
 
 <nav class="main" aria-label="Seções do site">
   <div class="wrap">
-    <ul>
+    <!-- cinco áreas; cada botão abre um painel com as páginas daquela área (main.js) -->
+    <ul class="menu">
       <li><a href="#inicio">Início</a></li>
-      <li><a href="#justica">Como a Justiça funciona</a></li>
-      <li><a href="#meucaso">Meu caso cabe no Juizado?</a></li>
-      <li><a href="#passos">Primeiros passos</a></li>
-      <li><a href="#defensoria">Defensoria</a></li>
-      <li><a href="#advogado">Seu advogado</a></li>
-      <li><a href="#glossario">Glossário</a></li>
-      <li><a href="#mulheres">Direitos das Mulheres</a></li>
-      <li><a href="#sobre">Sobre nós</a></li>
+      <li class="grp"><button type="button" aria-expanded="false" aria-controls="m-entenda">Entenda a Justiça</button>
+        <ul class="panel" id="m-entenda" hidden>
+          <li><a href="#justica">Como a Justiça funciona<small>Ramos, instâncias e quem faz o quê</small></a></li>
+          <li><a href="#glossario">Glossário<small>As palavras do processo, sem complicação</small></a></li>
+        </ul></li>
+      <li class="grp"><button type="button" aria-expanded="false" aria-controls="m-resolva">Resolva seu problema</button>
+        <ul class="panel" id="m-resolva" hidden>
+          <li><a href="#meucaso">Meu caso cabe no Juizado?<small>3 perguntas, resposta na hora</small></a></li>
+          <li><a href="#passos">Primeiros passos<small>Documentos, prazos, custos, audiência</small></a></li>
+          <li><a href="#defensoria">Defensoria Pública<small>Orientação e defesa gratuitas</small></a></li>
+          <li><a href="#advogado">Acompanhe seu advogado<small>Seus direitos como cliente</small></a></li>
+        </ul></li>
+      <li class="grp"><button type="button" aria-expanded="false" aria-controls="m-direitos">Conheça seus direitos</button>
+        <ul class="panel" id="m-direitos" hidden>
+          <li><a href="#mulheres">Direitos das Mulheres<small>Violência doméstica, medida protetiva, Ligue 180</small></a></li>
+          <li><a href="#passos-estado">Fui prejudicado pelo poder público<small>Prefeitura, Estado, União</small></a></li>
+          <li><a href="#def-conceitos">Justiça gratuita e assistência jurídica<small>Três ideias que não são a mesma coisa</small></a></li>
+        </ul></li>
+      <li class="grp"><button type="button" aria-expanded="false" aria-controls="m-fiscalize">Fiscalize e denuncie</button>
+        <ul class="panel" id="m-fiscalize" hidden>
+          <li><a href="#ondebuscar">Onde devo buscar ajuda?<small>Indica canais oficiais em poucas perguntas</small></a></li>
+          <li><a href="#mp">Ministério Público: quando procurar?<small>O que faz e qual procurar</small></a></li>
+          <li><a href="#denuncie">Como denunciar irregularidades<small>Ouvidorias, controladorias e outros canais</small></a></li>
+        </ul></li>
+      <li class="grp"><button type="button" aria-expanded="false" aria-controls="m-sobre">Sobre</button>
+        <ul class="panel" id="m-sobre" hidden>
+          <li><a href="#sobre">Sobre o projeto<small>Missão, valores e base legal</small></a></li>
+          <li><a href="#sobre-acess">Acessibilidade<small>Recursos e limites conhecidos</small></a></li>
+          <li><a href="#privacidade">Privacidade<small>O que acontece com seus dados</small></a></li>
+        </ul></li>
     </ul>
   </div>
 </nav>
@@ -103,15 +126,18 @@
     <div class="wrap">
       <div class="center" style="display:grid;gap:.7rem"><h2>Central de Ajuda</h2><div class="rule"></div></div>
       <div class="acts">
-        <a class="act" href="#meucaso"><span class="dot"><svg class="icon"><use href="#i-scale"/></svg></span><span class="t">Descubra se o seu caso cabe no Juizado<small>3 perguntas, resposta na hora</small></span></a>
-        <a class="act" href="#justica"><span class="dot"><svg class="icon"><use href="#i-build"/></svg></span><span class="t">Entenda como a Justiça brasileira é organizada<small>Quem julga o quê</small></span></a>
-        <a class="act" href="#defensoria"><span class="dot"><svg class="icon"><use href="#i-people"/></svg></span><span class="t">Encontre a Defensoria Pública do seu estado<small>Advogado gratuito</small></span></a>
-        <a class="act" href="#passos-docs"><span class="dot"><svg class="icon"><use href="#i-doc"/></svg></span><span class="t">Saiba quais documentos e provas reunir<small>Antes de ir ao fórum</small></span></a>
-        <a class="act" href="#passos-prazos"><span class="dot"><svg class="icon"><use href="#i-clock"/></svg></span><span class="t">Não perca o prazo<small>Quanto tempo você tem para agir</small></span></a>
-        <a class="act" href="#advogado"><span class="dot"><svg class="icon"><use href="#i-check"/></svg></span><span class="t">Acompanhe seu processo e seu advogado<small>Seus direitos como cliente</small></span></a>
-        <a class="act" href="#passos-estado"><span class="dot"><svg class="icon"><use href="#i-house"/></svg></span><span class="t">Fui prejudicado pelo poder público<small>Prefeitura, Estado, União</small></span></a>
-        <a class="act" href="#glossario"><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span><span class="t">Consulte o glossário<small>As palavras do processo, sem complicação</small></span></a>
-        <a class="act" href="#mulheres"><span class="dot"><svg class="icon"><use href="#i-shield"/></svg></span><span class="t">Direitos das Mulheres<small>Violência doméstica, medida protetiva, Ligue 180</small></span></a>
+        <a class="act" href="#ondebuscar"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></span><span class="t">Onde devo buscar ajuda?<small>Indica canais oficiais em poucas perguntas</small></span></a>
+        <a class="act" href="#meucaso"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg></span><span class="t">Descubra se o seu caso cabe no Juizado<small>3 perguntas, resposta na hora</small></span></a>
+        <a class="act" href="#justica"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-build"/></svg></span><span class="t">Entenda como a Justiça brasileira é organizada<small>Quem julga o quê</small></span></a>
+        <a class="act" href="#defensoria"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg></span><span class="t">Encontre a Defensoria Pública do seu estado<small>Advogado gratuito</small></span></a>
+        <a class="act" href="#passos-docs"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg></span><span class="t">Saiba quais documentos e provas reunir<small>Antes de ir ao fórum</small></span></a>
+        <a class="act" href="#passos-prazos"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><span class="t">Não perca o prazo<small>Quanto tempo você tem para agir</small></span></a>
+        <a class="act" href="#advogado"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span class="t">Acompanhe seu processo e seu advogado<small>Seus direitos como cliente</small></span></a>
+        <a class="act" href="#passos-estado"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-house"/></svg></span><span class="t">Fui prejudicado pelo poder público<small>Prefeitura, Estado, União</small></span></a>
+        <a class="act" href="#glossario"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span><span class="t">Consulte o glossário<small>As palavras do processo, sem complicação</small></span></a>
+        <a class="act" href="#mulheres"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="t">Direitos das Mulheres<small>Violência doméstica, medida protetiva, Ligue 180</small></span></a>
+        <a class="act" href="#mp"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span><span class="t">Ministério Público: quando procurar?<small>Direitos coletivos, patrimônio público, meio ambiente</small></span></a>
+        <a class="act" href="#denuncie"><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="t">Denuncie irregularidades no serviço público<small>Ouvidorias, controladorias e outros canais</small></span></a>
       </div>
     </div>
   </section>
@@ -208,7 +234,10 @@
         <p class="small">Valores com o salário mínimo de 2026 (R$&nbsp;1.621). Confira o valor atual.</p>
       </fieldset>
       <div id="resultado" class="result warn" aria-live="polite"><strong>Responda as três perguntas</strong><p>O resultado aparece aqui.</p></div>
+      <div class="row"><button type="reset" class="btn line">Recomeçar</button><span class="small">Para corrigir uma resposta, basta marcar outra opção.</span></div>
     </form>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> O resultado indica o caminho que costuma ser o adequado, mas não substitui a orientação de advogado, defensor público ou do próprio Juizado e não garante resultados.</p>
+    <p class="small">Fontes: Lei 9.099/1995, arts. 3º, 9º e 54; Lei 12.153/2009, arts. 2º e 27; Lei 10.259/2001, arts. 3º e 10; CLT, art. 791; Código de Processo Civil, arts. 98 a 102; Decreto 20.910/1932, art. 1º; Decreto 12.797/2025 (salário mínimo de 2026). Revisado em outubro de 2026.</p>
   </div>
 </div>
 
@@ -222,7 +251,7 @@
         <thead><tr><th>Juizado</th><th>Contra quem</th><th>Limite</th><th>Sem advogado?</th></tr></thead>
         <tbody>
           <tr><td>Especial Cível</td><td>Pessoas e empresas</td><td class="num">40 SM</td><td>Até 20 SM. De 20 a 40 SM, precisa de advogado.</td></tr>
-          <tr><td>Da Fazenda Pública</td><td>Estado, DF, Município</td><td class="num">60 SM</td><td>Sim, na primeira fase.</td></tr>
+          <tr><td>Da Fazenda Pública</td><td>Estado, DF, Município</td><td class="num">60 SM</td><td>Em regra, sim, na primeira fase. Confirme no Juizado.</td></tr>
           <tr><td>Especial Federal</td><td>União, INSS, Caixa</td><td class="num">60 SM</td><td>Sim, na primeira fase.</td></tr>
         </tbody>
       </table>
@@ -238,16 +267,18 @@
           <div class="prazo"><b>10&nbsp;dias</b><p>Para recorrer da sentença no Juizado. <strong>Aqui o advogado é obrigatório.</strong></p></div>
           <div class="prazo"><b>5&nbsp;dias</b><p>Para pedir que o juiz esclareça uma decisão (embargos de declaração).</p></div>
         </div>
-        <p class="small" style="margin-top:.6rem">No Juizado, os prazos do processo contam só dias úteis.</p>
+        <p style="margin-top:.6rem"><strong>No Juizado, os prazos do processo contam só dias úteis.</strong></p>
       </details>
       <details id="passos-custos"><summary>Quanto custa</summary><p>No Juizado, a primeira fase não tem custas. Fora dele, quem não pode pagar pode pedir a <strong>gratuidade da Justiça</strong> (CPC, arts. 98 a 102), com uma declaração de que não tem condições de arcar com as despesas. Quem decide se concede é o juiz, de acordo com cada caso. Gratuidade não é o mesmo que ter advogado gratuito: <a href="#def-conceitos">entenda a diferença</a>.</p></details>
-      <details id="passos-audiencia"><summary>Como funciona a audiência</summary><p>A primeira audiência é de conciliação, para tentar um acordo. <strong>Se você faltar</strong>, o processo é encerrado. <strong>Se a outra parte faltar</strong>, ela sofre revelia e o que você disse tende a ser aceito.</p></details>
+      <details id="passos-audiencia"><summary>Como funciona a audiência</summary><p>A primeira audiência é de conciliação, para tentar um acordo. Em regra, <strong>se você faltar</strong>, o processo é encerrado. <strong>Se a outra parte faltar</strong>, ela sofre revelia: o juiz pode considerar verdadeiros os fatos que você contou.</p></details>
       <details id="passos-naojuizado"><summary>O que não vai para o Juizado</summary><ul><li>Família: pensão, divórcio, guarda</li><li>Inventário e partilha de bens</li><li>Causas trabalhistas</li><li>Casos complexos que exigem perícia</li></ul></details>
       <details id="passos-estado"><summary>Fui prejudicado pelo poder público</summary>
         <p>Buraco na rua que estragou o carro, erro em hospital público, concurso anulado sem motivo. A Constituição (art. 37, § 6º) diz que o poder público responde pelos danos que seus agentes causam, <strong>mesmo sem culpa</strong>. Você precisa mostrar três coisas: <strong>o fato</strong> (o que o serviço público fez), <strong>o dano</strong> (o prejuízo sofrido) e <strong>o nexo causal</strong> (a ligação entre os dois).</p>
-        <p style="margin-top:.6rem">O Estado pode se livrar da responsabilidade se provar culpa exclusiva da vítima, caso fortuito ou força maior, ou culpa de outra pessoa. Quando o problema é algo que o Estado <em>deixou de fazer</em>, costuma ser preciso mostrar que ele tinha o dever de agir e falhou. Prazo: 5 anos.</p>
+        <p style="margin-top:.6rem">Em regra, o Estado pode se livrar da responsabilidade se provar culpa exclusiva da vítima, caso fortuito ou força maior (um fato imprevisível ou inevitável, como uma enchente) ou culpa de outra pessoa. Quando o problema é algo que o Estado <em>deixou de fazer</em>, costuma ser preciso mostrar que ele tinha o dever de agir e falhou. Prazo: 5 anos.</p>
       </details>
     </div>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações são gerais e não substituem a orientação de advogado, defensor público ou do Juizado. Regras e prazos podem ter exceções no seu caso.</p>
+    <p class="small">Fontes: Lei 9.099/1995, arts. 3º, 9º, 12-A, 20, 41, 42, 49, 51 e 54; Lei 12.153/2009, arts. 2º e 27; Lei 10.259/2001, arts. 3º e 10; Código de Processo Civil, arts. 98 a 102; Código Civil, art. 206, § 3º, V; Decreto 20.910/1932, art. 1º; Constituição Federal, art. 37, § 6º. Revisado em outubro de 2026.</p>
   </div>
 </div>
 
@@ -266,30 +297,32 @@
         <caption class="sr">Diferença entre acesso à Justiça, gratuidade e assistência jurídica gratuita</caption>
         <thead><tr><th>Conceito</th><th>O que significa</th></tr></thead>
         <tbody>
-          <tr><td><strong>Acesso à Justiça</strong></td><td>A possibilidade de buscar proteção para um direito ou resolver um conflito pelos meios adequados. É garantido a todos (Constituição, art. 5º, XXXV).</td></tr>
+          <tr><td><strong>Acesso à Justiça</strong></td><td>A possibilidade de buscar proteção para um direito ou resolver um conflito pelos meios adequados. A Constituição assegura esse acesso a todas as pessoas (art. 5º, XXXV).</td></tr>
           <tr><td><strong>Gratuidade da Justiça</strong></td><td>Benefício dentro do processo que pode dispensar o pagamento de custas e despesas, conforme os requisitos da lei (CPC, arts. 98 a 102). Quem decide é o juiz.</td></tr>
           <tr><td><strong>Assistência jurídica gratuita</strong></td><td>Orientação e defesa feitas de graça para quem não pode pagar, principalmente pela Defensoria Pública (Constituição, art. 5º, LXXIV, e art. 134).</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="small">Você pode precisar de orientação antes mesmo de saber se tem direito à gratuidade ou se deve entrar com uma ação. Este site ajuda nesse primeiro momento.</p>
+    <p class="small">Você pode precisar de orientação antes mesmo de saber se pode pedir a gratuidade ou se deve entrar com uma ação. Este site ajuda nesse primeiro momento.</p>
     <p><strong>Existem duas Defensorias diferentes.</strong> Procurar a errada é o erro mais comum.</p>
     <div class="cards">
-      <div class="card" id="def-dpu"><span class="kicker">Federal</span><h3>Defensoria Pública da União (DPU)</h3><ul><li>INSS: aposentadoria, auxílio-doença, BPC/LOAS</li><li>Caixa: FGTS e programas habitacionais</li><li>Benefícios e remédios cobrados da União</li></ul><p class="small">Renda familiar de até 2 salários mínimos (regra de 2026). Também atende quem recebe Bolsa Família.</p></div>
-      <div class="card" id="def-estadual"><span class="kicker">Estadual e DF</span><h3>Defensoria do Estado ou do DF</h3><ul><li>Família, pensão, divórcio, guarda, inventário</li><li>Consumidor e moradia</li><li>Ações contra o Estado ou a Prefeitura</li><li>Defesa criminal e violência doméstica</li></ul><p class="small">Cada estado define seu limite. No DF, a referência é renda familiar de até 5 salários mínimos.</p></div>
+      <div class="card" id="def-dpu"><span class="kicker">Federal</span><h3>Defensoria Pública da União (DPU)</h3><ul><li>INSS: aposentadoria, auxílio-doença, BPC/LOAS</li><li>Caixa: FGTS e programas habitacionais</li><li>Benefícios e remédios cobrados da União</li></ul><p>Renda familiar de até 2 salários mínimos (Resolução CSDPU 240/2025).</p></div>
+      <div class="card" id="def-estadual"><span class="kicker">Estadual e DF</span><h3>Defensoria do Estado ou do DF</h3><ul><li>Família, pensão, divórcio, guarda, inventário</li><li>Consumidor e moradia</li><li>Ações contra o Estado ou a Prefeitura</li><li>Defesa criminal e violência doméstica</li></ul><p>Cada estado define seu limite. No DF, a referência é renda familiar de até 5 salários mínimos.</p></div>
     </div>
     <div class="acc">
-      <details id="def-naoatua"><summary>Quando a Defensoria não atua</summary><ul><li>Renda acima do limite, sem outra situação de vulnerabilidade</li><li>Esfera errada: a DPU não cuida de divórcio; a estadual não cuida do INSS</li><li>Você já tem advogado particular no mesmo processo</li><li>Pedido sem base na lei (você pode pedir o motivo e solicitar revisão)</li><li>Empresas, em regra</li></ul></details>
+      <details id="def-naoatua"><summary>Quando a Defensoria não atua</summary><ul><li>Renda acima do limite, sem outra situação de vulnerabilidade</li><li>Esfera errada: a DPU não cuida de divórcio; a estadual não cuida do INSS</li><li>Você já tem advogado particular no mesmo processo</li><li>Pedido sem base na lei (a recusa deve ser explicada, e costuma haver como pedir revisão)</li><li>Empresas, em regra</li></ul></details>
       <details><summary>Ganho um pouco acima do limite. Posso tentar?</summary><p>Sim. O defensor pode considerar gastos altos com saúde e outras dificuldades. Mulheres em situação de violência doméstica, idosos e pessoas com deficiência costumam ter atendimento facilitado.</p></details>
-      <details><summary>Não tem Defensoria na minha cidade</summary><ul><li>Núcleos de prática jurídica de faculdades de Direito</li><li>Atermação direta no Juizado</li><li>Advogado dativo, nomeado pelo juiz</li></ul></details>
+      <details><summary>Não tem Defensoria na minha cidade</summary><ul><li>Núcleos de prática jurídica de faculdades de Direito</li><li>Atermação direta no Juizado</li><li>Advogado dativo: o juiz pode pedir que a OAB indique um advogado</li></ul></details>
       <details id="def-docs"><summary>O que levar no atendimento</summary><ul><li>RG, CPF e comprovante de residência</li><li>Comprovante de renda de todos que moram na casa</li><li>Todos os papéis ligados ao caso</li><li>Um resumo escrito dos fatos, com datas</li></ul></details>
     </div>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações não substituem a orientação da própria Defensoria. Quem avalia se o atendimento é possível é o defensor público, caso a caso.</p>
+    <p class="small">Fontes: Constituição Federal, art. 5º, XXXV e LXXIV, e art. 134; Lei Complementar 80/1994, arts. 1º e 4º, XI; Código de Processo Civil, arts. 98 a 102; Resolução CSDPU 240/2025 (DPU); Resolução CSDPDF 271/2023, arts. 4º, 17 e 20 (DF); Lei 11.340/2006, art. 28; Lei 1.060/1950, art. 5º; Decreto 12.797/2025 (salário mínimo de 2026). Revisado em outubro de 2026.</p>
   </div>
 </div>
 
 <!-- ================= ADVOGADO ================= -->
 <div data-page="advogado" hidden>
-  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Seu advogado</span></nav><h1>Acompanhe seu processo e seu advogado</h1><p>Ter advogado não significa ficar no escuro. Você tem o direito de saber o que acontece no seu processo.</p></div></div>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / <span aria-current="page">Seu advogado</span></nav><h1>Acompanhe seu processo e seu advogado</h1><p>Ter advogado não significa ficar no escuro. Você pode e deve pedir informações sobre o seu processo.</p></div></div>
   <div class="wrap narrow body">
     <h2 class="secth" style="font-size:1.4rem">Marque o que você já tem</h2>
     <div class="check" id="checklist">
@@ -302,8 +335,8 @@
     <p class="small" id="checkStatus" aria-live="polite"></p>
     <div class="acc">
       <details id="adv-alerta"><summary>Sinais de alerta</summary><ul><li>Não informa o número do processo</li><li>Não mostra documentos nem decisões</li><li>Pede dinheiro “por fora”, sem recibo</li><li>Só conversa com uma pessoa da família, quando o caso é de todos</li><li>Diz que “o dinheiro ainda não saiu” sem mostrar o andamento</li></ul></details>
-      <details id="adv-direitos"><summary>Seus direitos e onde reclamar</summary><p>O advogado é obrigado a prestar contas do dinheiro que recebe em seu nome. Recusar isso é infração ética. A reclamação vai para o <strong>Tribunal de Ética e Disciplina da OAB</strong> do seu estado.</p></details>
-      <details id="adv-inventario"><summary>Inventário: o que a família precisa saber</summary><ul><li>Se todos os herdeiros concordam, o inventário pode ser feito <strong>em cartório</strong>, mais rápido e barato.</li><li>Mesmo no cartório, o advogado é obrigatório. Cada herdeiro pode ter o seu.</li><li>Deve ser aberto em até <strong>2 meses</strong> após o falecimento. O atraso pode gerar multa no imposto (ITCMD).</li><li>Na Defensoria, quando há conflito entre parentes, a renda de cada um é avaliada separadamente.</li></ul></details>
+      <details id="adv-direitos"><summary>Seus direitos e onde reclamar</summary><p>O advogado é obrigado a prestar contas do dinheiro que recebe em seu nome. Recusar isso sem justificativa é infração disciplinar. A reclamação vai para o <strong>Tribunal de Ética e Disciplina da OAB</strong> do seu estado.</p></details>
+      <details id="adv-inventario"><summary>Inventário: o que a família precisa saber</summary><ul><li>Em regra, se todos os herdeiros são capazes e estão de acordo, o inventário pode ser feito <strong>em cartório</strong>, sem processo na Justiça.</li><li>Mesmo no cartório, é preciso estar acompanhado de advogado ou defensor público. Cada herdeiro pode ter o seu.</li><li>Deve ser aberto em até <strong>2 meses</strong> após o falecimento. O atraso pode gerar multa no imposto (ITCMD), conforme a lei do seu estado.</li><li>Na Defensoria do DF, por exemplo, quando há conflito entre parentes, a renda de cada um é avaliada separadamente. Confirme a regra da Defensoria do seu estado.</li></ul></details>
       <details id="adv-ia" open><summary>Use a inteligência artificial para entender seus papéis</summary>
         <p>Cole uma decisão ou documento numa ferramenta de IA com o texto abaixo:</p>
         <div class="prompt" id="promptTxt" style="margin-top:.6rem">Vou colar abaixo um documento do meu processo. Explique em linguagem simples, como se eu nunca tivesse estudado Direito:
@@ -317,6 +350,8 @@ Não invente informações. Se algo não estiver claro no texto, diga.
         <p class="small" style="margin-top:.5rem"><strong>Cuidado:</strong> a IA pode errar. Use as respostas para fazer boas perguntas. Antes de colar, apague CPF, RG, endereço e dados bancários.</p>
       </details>
     </div>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações não substituem a orientação de advogado, defensor público ou da OAB do seu estado e não garantem resultados.</p>
+    <p class="small">Fontes: Lei 8.906/1994 (Estatuto da Advocacia e da OAB), arts. 34, XXI, e 70, § 1º; Código de Processo Civil, arts. 105, 610 e 611; Resolução CSDPDF 271/2023, art. 4º, § 3º (DF). Revisado em outubro de 2026.</p>
   </div>
 </div>
 
@@ -338,7 +373,7 @@ Não invente informações. Se algo não estiver claro no texto, diga.
   <div class="wrap body">
     <div class="sos" role="note">
       <div><b>190</b><p>Polícia Militar. Ligue se estiver em perigo agora.</p></div>
-      <div><b>180</b><p>Central de Atendimento à Mulher. Gratuita, 24 horas, anônima. Orienta e encaminha.</p></div>
+      <div><b>180</b><p>Central de Atendimento à Mulher. Gratuita, 24 horas, todos os dias. Orienta e encaminha.</p></div>
       <div><b>X</b><p>Um X vermelho na palma da mão, mostrado em farmácias e outros locais parceiros, é um pedido silencioso de socorro (Sinal Vermelho, Lei 14.188/2021).</p></div>
     </div>
     <p class="small">Se alguém mexe no seu celular ou computador, use o botão <strong>Sair rápido</strong> e apague o histórico do navegador depois.</p>
@@ -356,7 +391,7 @@ Não invente informações. Se algo não estiver claro no texto, diga.
     <h2 class="secth" id="mulheres-medida">Medida protetiva de urgência</h2>
     <p>É uma ordem do juiz para proteger você. Pode, por exemplo, afastar o agressor de casa, proibir que ele se aproxime ou entre em contato, e suspender a posse de arma.</p>
     <div class="acc">
-      <details id="mulheres-pedir"><summary>Como pedir</summary><ul><li>Na delegacia (de preferência a Delegacia da Mulher, a DEAM), na Defensoria Pública ou no Ministério Público.</li><li><strong>Não precisa de advogado</strong> nem pagar nada.</li><li>O juiz deve decidir em até 48 horas.</li><li>A medida pode ser concedida mesmo sem boletim de ocorrência ou processo criminal aberto (Lei 14.550/2023).</li><li>Em muitos estados, o pedido e o boletim podem ser feitos pela delegacia online.</li></ul></details>
+      <details id="mulheres-pedir"><summary>Como pedir</summary><ul><li>Na delegacia (de preferência a Delegacia da Mulher, a DEAM), na Defensoria Pública ou no Ministério Público.</li><li><strong>Não precisa de advogado</strong> para pedir. A lei assegura à mulher acesso à Defensoria Pública ou à assistência judiciária gratuita.</li><li>O juiz deve decidir em até 48 horas.</li><li>A medida pode ser concedida mesmo sem boletim de ocorrência ou processo criminal aberto (Lei 14.550/2023).</li><li>Em muitos estados, o pedido e o boletim podem ser feitos pela delegacia online.</li></ul></details>
       <details id="mulheres-descumprir"><summary>E se ele descumprir a medida?</summary><p>Descumprir medida protetiva é crime, com pena de 2 a 5 anos de prisão. Ligue 190 na hora e informe que existe medida protetiva. Guarde prints, áudios e nomes de testemunhas.</p></details>
       <details id="mulheres-provas"><summary>Como guardar provas com segurança</summary><ul><li>Fotos das lesões e de objetos quebrados, com data.</li><li>Prints de mensagens e áudios, de preferência enviados para um e-mail ou pessoa de confiança.</li><li>Laudo do exame de corpo de delito (a delegacia encaminha).</li><li>Atestados e registros de atendimento em hospital ou posto de saúde.</li><li>Nome e contato de quem viu ou ouviu.</li></ul></details>
       <details id="mulheres-plano"><summary>Plano de segurança</summary><ul><li>Combine uma palavra-código com alguém de confiança para pedir ajuda.</li><li>Deixe documentos, cópia das chaves, remédios e algum dinheiro num lugar seguro ou com outra pessoa.</li><li>Saiba onde fica a DEAM ou a delegacia mais próxima.</li><li>Ensine às crianças a ligar 190.</li></ul></details>
@@ -364,16 +399,17 @@ Não invente informações. Se algo não estiver claro no texto, diga.
 
     <h2 class="secth" id="mulheres-feminicidio">Feminicídio</h2>
     <p>É matar uma mulher por ela ser mulher, em situação de violência doméstica ou de menosprezo e discriminação à condição de mulher. Desde a Lei 14.994/2024, é um crime próprio no Código Penal (art. 121-A), com pena de <strong>20 a 40 anos</strong>, uma das maiores da lei brasileira.</p>
-    <p class="notice"><strong>Sinais de risco que pedem ajuda imediata:</strong> ameaças de morte, tentativa de enforcamento, acesso a arma, ciúme extremo, perseguição, agressões que aumentam de frequência e não aceitar o fim do relacionamento. Se você reconhece esses sinais, ligue 180 ou procure a delegacia ou a Defensoria.</p>
+    <p class="notice"><strong>Sinais de risco que pedem ajuda imediata:</strong> ameaças de morte, tentativa de enforcamento, acesso a arma, ciúme extremo, perseguição, agressões que aumentam de frequência e não aceitar o fim do relacionamento. Se você reconhece esses sinais e está em perigo agora, ligue 190. Para orientação, ligue 180 ou procure a delegacia ou a Defensoria.</p>
 
     <h2 class="secth" id="mulheres-onde">Onde buscar ajuda</h2>
     <div class="cards">
       <div class="card"><h3>Delegacia da Mulher (DEAM)</h3><p>Registra a ocorrência e encaminha o pedido de medida protetiva. Na falta dela, qualquer delegacia deve atender.</p></div>
-      <div class="card"><h3>Casa da Mulher Brasileira</h3><p>Reúne num só lugar delegacia, Defensoria, Ministério Público, juizado e apoio psicossocial. Existe em várias capitais.</p></div>
+      <div class="card"><h3>Casa da Mulher Brasileira</h3><p>Reúne num só lugar delegacia, Defensoria, Ministério Público, juizado e apoio psicossocial. Em 2026, eram 13 unidades, a maioria em capitais.</p></div>
       <div class="card"><h3>Defensoria Pública</h3><p>Núcleos especializados atendem mulheres em situação de violência, inclusive para divórcio, guarda e pensão. Costuma atender mesmo acima do limite de renda. <a href="#defensoria">Encontre a sua</a>.</p></div>
       <div class="card"><h3>CREAS e CRAS</h3><p>Serviços da assistência social do seu município: acolhimento, acompanhamento e acesso a benefícios.</p></div>
     </div>
-    <p class="small">Legislação: Lei 11.340/2006 (Maria da Penha), Lei 14.188/2021, Lei 14.550/2023, Lei 14.994/2024 e Código Penal, arts. 121-A, 147-A e 147-B. Conteúdo educativo e orientativo: em caso de dúvida, procure os serviços acima.</p>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações não substituem a orientação da Defensoria, da delegacia ou dos serviços acima. Em perigo, ligue 190.</p>
+    <p class="small">Fontes: Lei 11.340/2006 (Maria da Penha), arts. 5º, 7º, 10, 18, 19, 22, 24-A, 27 e 28; Lei 14.188/2021; Lei 14.550/2023; Lei 14.994/2024; Código Penal, arts. 121-A, 147-A e 147-B; Ministério das Mulheres (páginas do Ligue 180 e da Casa da Mulher Brasileira). Revisado em outubro de 2026.</p>
   </div>
 </div>
 
@@ -394,7 +430,7 @@ Não invente informações. Se algo não estiver claro no texto, diga.
       <div class="card"><h3>Linguagem simples</h3><p>Escrevemos para quem nunca entrou num fórum. Se uma palavra técnica for necessária, explicamos.</p></div>
       <div class="card"><h3>Honestidade</h3><p>Somos um guia educativo. Dizemos com clareza o que o site faz e quando é preciso procurar um defensor ou advogado.</p></div>
       <div class="card"><h3>Independência</h3><p>Não vendemos serviços jurídicos nem indicamos advogados. Nosso único interesse é que você conheça seus direitos.</p></div>
-      <div class="card"><h3>Respeito</h3><p>Tratamos cada dúvida com seriedade, sem julgamento, e não guardamos seus dados pessoais.</p></div>
+      <div class="card"><h3>Respeito</h3><p>Tratamos cada dúvida com seriedade, sem julgamento. Não pedimos cadastro nem guardamos seus dados pessoais: <a href="#privacidade">veja a política de privacidade</a>.</p></div>
     </div>
     <h2 class="secth" id="sobre-base">Base legal</h2>
     <p>O Justiça ao Alcance de Todos tem finalidade educativa e orientativa. Seu objetivo é ampliar o acesso à informação jurídica, ajudando pessoas em situação de vulnerabilidade econômica a compreender seus direitos, conhecer os caminhos para buscar a Justiça e identificar os serviços públicos de assistência jurídica gratuita. Nossa orientação se fundamenta, especialmente, nestas normas:</p>
@@ -408,19 +444,177 @@ Não invente informações. Se algo não estiver claro no texto, diga.
     <h2 class="secth" id="sobre-natureza">Natureza do projeto</h2>
     <div class="cards">
       <div class="card"><h3>O que fazemos</h3><ul><li>Explicamos direitos, procedimentos e serviços públicos em linguagem simples.</li><li>Ajudamos você a entender seus caminhos.</li><li>Indicamos onde encontrar os serviços adequados.</li></ul></div>
-      <div class="card"><h3>O que não fazemos</h3><ul><li>Não concedemos gratuidade da Justiça.</li><li>Não prometemos advogado gratuito, vitória judicial ou benefício automático.</li><li>Não garantimos a aceitação de pedidos judiciais.</li><li>Não substituímos a Defensoria Pública, a advocacia ou as decisões das autoridades.</li></ul></div>
+      <div class="card"><h3>O que não fazemos</h3><ul><li>Não concedemos gratuidade da Justiça.</li><li>Não prometemos advogado gratuito, vitória judicial ou benefício automático.</li><li>Não garantimos a aceitação de pedidos judiciais.</li><li>Não substituímos a Defensoria Pública, a advocacia ou as decisões das autoridades.</li><li>Não recebemos nem encaminhamos denúncias: indicamos o canal oficial, e o registro é feito diretamente nele.</li></ul></div>
     </div>
     <p>A concessão da gratuidade e a definição da assistência jurídica cabível dependem das circunstâncias de cada caso e das regras aplicáveis. Nosso compromisso é tornar a informação jurídica mais acessível, para que a falta de conhecimento não seja mais um obstáculo na busca por direitos.</p>
     <p class="notice"><strong>Este é um projeto educativo e orientativo.</strong> Explicamos como a Justiça funciona e para onde ir, mas não analisamos casos concretos nem prestamos consultoria jurídica, que é atividade exclusiva de advogados e defensores públicos. As informações são gerais e podem mudar. Conteúdo revisado em outubro de 2026.</p>
+
+    <h2 class="secth" id="sobre-fontes">Fontes e atualização</h2>
+    <ul class="plain-list">
+      <li>As leis citadas são conferidas no texto oficial, publicado no portal da legislação do Planalto.</li>
+      <li>Telefones e links de órgãos públicos vêm dos sites oficiais e são testados antes de publicar. Os links das páginas Ministério Público e Como denunciar foram verificados em 21 de outubro de 2026.</li>
+      <li>Quando não conseguimos confirmar o endereço oficial de um órgão, mostramos um botão de busca em vez de um link direto.</li>
+      <li>Valores que mudam todo ano, como o salário mínimo, trazem o ano de referência. Confira sempre o valor atual.</li>
+    </ul>
+
+    <h2 class="secth" id="sobre-acess">Acessibilidade</h2>
+    <p>O site foi revisado com base nas diretrizes WCAG 2.2, nível AA, e no Modelo de Acessibilidade em Governo Eletrônico (eMAG).</p>
+    <div class="cards">
+      <div class="card"><h3>O que já fazemos</h3><ul><li>Fonte criada para facilitar a leitura de pessoas com baixa visão.</li><li>Contraste entre texto e fundo de pelo menos 4,5 para 1.</li><li>Tudo funciona pelo teclado, com o foco sempre visível.</li><li>Atalho “Pular para o conteúdo” no topo.</li><li>Páginas organizadas por títulos, para leitores de tela.</li><li>Layout que se adapta ao celular e à ampliação do texto.</li></ul></div>
+      <div class="card"><h3>Limites conhecidos</h3><ul><li>O site precisa de JavaScript ligado para trocar de página e usar os questionários.</li><li>A foto da página inicial é ilustrativa e tem descrição em texto.</li><li>Ainda não testamos com todos os leitores de tela. Se encontrar uma barreira, ela será corrigida assim que o canal de contato for publicado.</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ONDE BUSCAR AJUDA ================= -->
+<div data-page="ondebuscar" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / Fiscalize e denuncie / <span aria-current="page">Onde devo buscar ajuda?</span></nav><h1>Onde devo buscar ajuda?</h1><p>Responda algumas perguntas rápidas e veja canais oficiais que podem ser adequados ao seu problema.</p></div></div>
+  <div class="wrap narrow body">
+    <p class="small"><strong>Nada do que você marcar é salvo ou enviado.</strong> As respostas ficam só no seu aparelho e somem quando você sai da página. Não escreva nomes nem detalhes do caso: as perguntas não pedem isso.</p>
+    <div class="guia" id="guia"><noscript><p class="notice">Este questionário precisa de JavaScript. Sem ele, consulte a página <a href="#denuncie">Como denunciar irregularidades</a>.</p></noscript></div>
+  </div>
+</div>
+
+<!-- ================= MINISTÉRIO PÚBLICO ================= -->
+<div data-page="mp" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / Fiscalize e denuncie / <span aria-current="page">Ministério Público</span></nav><h1>Ministério Público: quando procurar?</h1><p>O Ministério Público defende os interesses da sociedade. Entenda o que ele faz, quando pode ajudar e como encontrar o canal certo.</p></div></div>
+  <div class="wrap body">
+    <h2 class="secth" id="mp-oque">O que é</h2>
+    <p>A Constituição diz que o Ministério Público é uma instituição permanente, encarregada de defender a ordem jurídica, o regime democrático e os interesses sociais e individuais indisponíveis (art. 127). Ele é independente: não faz parte do Judiciário nem do governo.</p>
+    <div class="cards">
+      <div class="card"><h3>Não é o juiz</h3><p>O Ministério Público investiga, propõe ações e fiscaliza o cumprimento da lei. Quem decide o processo é sempre um juiz.</p></div>
+      <div class="card"><h3>Não é o seu advogado</h3><p>O promotor defende o interesse da sociedade, não o de uma pessoa. Para um conflito só seu, o caminho costuma ser a <a href="#defensoria">Defensoria Pública</a> ou um advogado.</p></div>
+      <div class="card"><h3>Promotor e procurador</h3><p>Nos estados, quem atua na primeira instância é o promotor de Justiça. No Ministério Público Federal, é o procurador da República.</p></div>
+    </div>
+
+    <h2 class="secth" id="mp-quando">Quando ele pode ser o caminho</h2>
+    <p>O Ministério Público costuma atuar quando o problema atinge muitas pessoas ou envolve um interesse que a lei protege de forma especial (Constituição, art. 129). Por exemplo:</p>
+    <div class="cards">
+      <div class="card"><h3>Patrimônio público</h3><p>Suspeita de desvio de dinheiro público, fraude em licitação ou improbidade administrativa.</p></div>
+      <div class="card"><h3>Meio ambiente</h3><p>Desmatamento, poluição de rios, descarte irregular de lixo.</p></div>
+      <div class="card"><h3>Direitos coletivos</h3><p>Um serviço essencial negado a toda uma comunidade, como falta de vagas em creche ou de remédios na rede pública.</p></div>
+      <div class="card"><h3>Pessoas vulneráveis</h3><p>Crianças, adolescentes, pessoas idosas e pessoas com deficiência em situação de risco ou abandono.</p></div>
+      <div class="card"><h3>Crimes</h3><p>Na maioria dos crimes, é o Ministério Público quem acusa o autor na Justiça.</p></div>
+    </div>
+
+    <h2 class="secth" id="mp-individual">E se o problema for só meu?</h2>
+    <p>Depende do caso. Direitos individuais indisponíveis, como a vida e a saúde, podem justificar a atuação do Ministério Público, principalmente quando envolvem crianças, adolescentes, pessoas idosas ou pessoas com deficiência.</p>
+    <p>Já conflitos individuais sobre dinheiro, como uma cobrança indevida de uma loja, em regra ficam com a Defensoria, um advogado ou o <a href="#meucaso">Juizado</a>. Quem decide se pode agir é o próprio Ministério Público, depois de analisar o que você relatou.</p>
+
+    <h2 class="secth" id="mp-qual">Qual Ministério Público procurar</h2>
+    <div class="cards">
+      <div class="card"><span class="kicker">Estadual e DF</span><h3>Ministério Público do seu estado</h3><p>A maioria dos casos do dia a dia: problemas com a Prefeitura ou o governo do estado, meio ambiente local, crimes comuns, direitos de crianças e pessoas idosas. No DF, é o MPDFT.</p></div>
+      <div class="card"><span class="kicker">Federal</span><h3>Ministério Público Federal (MPF)</h3><p>Quando o caso envolve a União, órgãos e empresas públicas federais (INSS, Caixa, universidades federais), verbas federais, terras indígenas ou crimes federais.</p></div>
+      <div class="card"><span class="kicker">Outros ramos</span><h3>Trabalho e eleições</h3><p>O Ministério Público do Trabalho cuida de irregularidades que atingem grupos de trabalhadores. O Ministério Público Eleitoral atua nas eleições.</p></div>
+    </div>
+    <div class="card" style="background:var(--bg-alt)">
+      <h3>Encontre o Ministério Público</h3>
+      <div class="row"><label for="mpuf" class="small">Estado ou ramo</label><select id="mpuf"></select><a class="btn gold" id="mpLink" href="https://www.mpf.mp.br/servicos/mpf-servicos" target="_blank" rel="noopener">Abrir site</a></div>
+      <p class="small">Confirme sempre que está no endereço oficial, terminado em .mp.br.</p>
+    </div>
+
+    <h2 class="secth" id="mp-contato">Como levar um fato ao Ministério Público</h2>
+    <p>O relato que você faz se chama, em geral, <strong>notícia de fato</strong> ou <strong>representação</strong>. Ele costuma ser feito pela ouvidoria ou pelo atendimento ao cidadão do site oficial. Muitos canais permitem pedir que sua identidade seja preservada; confira as regras de cada um.</p>
+    <div class="acc">
+      <details id="mp-antes" open><summary>Antes de enviar</summary><ul><li>Descreva o que aconteceu, quando, onde e quem estava envolvido (órgão, empresa ou cargo).</li><li>Separe documentos, fotos e protocolos que você obteve de forma lícita.</li><li>Diga se já reclamou em outro lugar e informe o número do protocolo.</li><li>Relate fatos, não conclusões: “vi”, “recebi”, “me disseram”. A apuração cabe ao órgão.</li><li>Guarde o número de protocolo para acompanhar o andamento.</li></ul></details>
+    </div>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações não substituem a orientação de advogado, defensor público ou órgão competente. Este site não é canal oficial de denúncias e não garante resultados.</p>
+    <p class="small">Fontes: Constituição Federal, arts. 127 a 130-A; Lei Complementar 75/1993; Lei 8.625/1993; Resolução CNMP 174/2017 (notícia de fato). Revisado em outubro de 2026.</p>
+  </div>
+</div>
+
+<!-- ================= COMO DENUNCIAR ================= -->
+<div data-page="denuncie" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / Fiscalize e denuncie / <span aria-current="page">Como denunciar</span></nav><h1>Como denunciar irregularidades no serviço público</h1><p>Se você viu algo errado num órgão público, existem canais oficiais para relatar. Escolher o canal certo aumenta a chance de o caso ser analisado.</p></div></div>
+  <div class="wrap body">
+    <p class="notice"><strong>Este site não recebe denúncias.</strong> Aqui você descobre para onde ir. O registro é feito diretamente no canal oficial. Em situação de perigo, ligue 190.</p>
+    <p><a class="btn gold" href="#ondebuscar">Responder o questionário “Onde devo buscar ajuda?”</a></p>
+
+    <h2 class="secth" id="denuncie-tipos">Primeiro: que tipo de manifestação é?</h2>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Tabela de tipos de manifestação">
+      <table>
+        <caption class="sr">Tipos de manifestação, quando usar e exemplos</caption>
+        <thead><tr><th>Tipo</th><th>Quando usar</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Solicitação</strong></td><td>Pedir um serviço ou uma providência</td><td>Conserto de um poste apagado</td></tr>
+          <tr><td><strong>Reclamação</strong></td><td>Mostrar insatisfação com um serviço público</td><td>Espera muito longa no posto de saúde</td></tr>
+          <tr><td><strong>Denúncia</strong></td><td>Comunicar uma irregularidade que precisa ser apurada</td><td>Servidor que falta ao trabalho e registra presença</td></tr>
+          <tr><td><strong>Possível crime</strong></td><td>Fato que pode ser crime</td><td>Pedido de dinheiro para fazer um serviço público. Vai para a polícia ou o Ministério Público</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="secth" id="denuncie-situacoes">Situações comuns e onde procurar</h2>
+    <div class="acc">
+      <details id="denuncie-vantagem"><summary>Pediram dinheiro ou um favor para fazer o serviço</summary><p>Cobrar “por fora” para agilizar um documento ou liberar um atendimento pode ser crime (Código Penal, arts. 316 e 317). Procure a polícia ou o Ministério Público. Se o servidor for federal, a Polícia Federal e o Ministério Público Federal. A ouvidoria e a corregedoria do órgão também podem ser avisadas.</p></details>
+      <details id="denuncie-funcional"><summary>Servidor que descumpre seus deveres</summary><p>Faltar ao trabalho, tratar mal o público ou usar o cargo em benefício próprio pode ser falta funcional. Quem apura é a <strong>corregedoria</strong> do órgão. O caminho mais simples costuma ser a <strong>ouvidoria</strong>, que encaminha o caso.</p></details>
+      <details id="denuncie-servico"><summary>Serviço público que falhou ou foi negado</summary><p>Remédio em falta, obra parada, atendimento recusado. Comece pela ouvidoria do órgão, da Prefeitura ou do governo do estado. Se você teve prejuízo, também pode buscar reparação: veja <a href="#passos-estado">Fui prejudicado pelo poder público</a>. Se o problema atinge muitas pessoas, o <a href="#mp">Ministério Público</a> também pode ser procurado.</p></details>
+      <details id="denuncie-discriminacao"><summary>Discriminação no atendimento</summary><p>Tratamento pior por causa de raça, cor, gênero, idade, deficiência, religião ou orientação sexual. Registre na ouvidoria do órgão. O <strong>Disque 100</strong> recebe denúncias de violações de direitos humanos. Racismo e injúria racial são crimes: nesse caso, procure também a polícia.</p></details>
+      <details id="denuncie-recursos"><summary>Suspeita de mau uso de dinheiro público</summary><p>Obra que parece superfaturada, licitação suspeita, dinheiro de programa social desviado. Os canais são a controladoria (a <strong>CGU</strong>, quando o dinheiro é federal), o <strong>tribunal de contas</strong> (o TCU para verbas federais; o do estado para verbas estaduais e, na maioria dos estados, municipais) e o Ministério Público.</p></details>
+      <details id="denuncie-exigencia"><summary>Exigência que parece indevida</summary><p>Peça, de forma educada, que o servidor informe por escrito a regra que exige aquele documento ou taxa. A Lei 13.726/2018 dispensa, na maioria dos casos, reconhecimento de firma e autenticação de cópia quando o servidor pode conferir o documento original. Se não houver solução, registre uma reclamação na ouvidoria.</p></details>
+    </div>
+
+    <h2 class="secth" id="denuncie-canais">Os principais canais</h2>
+    <p>Não existe uma ordem obrigatória: você não precisa passar por um canal antes do outro. Escolha pelo tipo de problema e pela urgência.</p>
+    <div class="cards">
+      <div class="card"><span class="kicker">Todas as esferas</span><h3>Ouvidoria do órgão</h3><p>Recebe solicitações, reclamações e denúncias sobre o serviço daquele órgão e cobra uma resposta.</p><p class="small">Procure “Ouvidoria” no site oficial do órgão, geralmente terminado em .gov.br.</p></div>
+      <div class="card"><span class="kicker">Federal e quem aderiu</span><h3>Fala.BR</h3><p>Plataforma de ouvidoria da Controladoria-Geral da União. Atende órgãos federais e estados e municípios que aderiram a ela.</p><p class="small">Não atende todos os órgãos: se o seu não aparecer na lista, use o canal próprio dele.</p><a href="https://falabr.cgu.gov.br/" target="_blank" rel="noopener">Abrir o Fala.BR<span class="sr"> (abre em nova aba)</span></a></div>
+      <div class="card"><span class="kicker">Federal</span><h3>Controladoria-Geral da União (CGU)</h3><p>Fiscaliza o uso de recursos federais, inclusive os repassados a estados e municípios. Recebe manifestações pelo Fala.BR.</p><a href="https://www.gov.br/cgu/pt-br" target="_blank" rel="noopener">Site da CGU<span class="sr"> (abre em nova aba)</span></a></div>
+      <div class="card"><span class="kicker">Todas as esferas</span><h3>Corregedoria</h3><p>Apura a conduta de servidores. Costuma receber denúncias pela ouvidoria do próprio órgão.</p></div>
+      <div class="card"><span class="kicker">Federal e estadual</span><h3>Tribunais de contas</h3><p>Fiscalizam as contas públicas. O TCU cuida das verbas federais; o tribunal de contas do estado, das estaduais e, na maioria dos estados, das municipais.</p><a href="https://portal.tcu.gov.br/" target="_blank" rel="noopener">Portal do TCU<span class="sr"> (abre em nova aba)</span></a></div>
+      <div class="card"><span class="kicker">Federal e estadual</span><h3>Ministério Público</h3><p>Patrimônio público, direitos coletivos, meio ambiente, pessoas vulneráveis e crimes.</p><a href="#mp">Quando procurar e como encontrar</a></div>
+      <div class="card"><span class="kicker">Possível crime</span><h3>Polícia</h3><p>A Polícia Civil (delegacia) registra crimes em geral; muitos estados têm delegacia online. A Polícia Federal recebe comunicação de crimes federais.</p><a href="https://www.gov.br/pf/pt-br/canais_atendimento/comunicacao-de-crimes" target="_blank" rel="noopener">Comunicar crime à Polícia Federal<span class="sr"> (abre em nova aba)</span></a></div>
+      <div class="card"><span class="kicker">Direitos humanos</span><h3>Disque 100</h3><p>Recebe denúncias de violações de direitos humanos, especialmente contra crianças e adolescentes, pessoas idosas e pessoas com deficiência. Gratuito, 24 horas, todos os dias. Também atende pelo WhatsApp (61) 99611-0100.</p><a href="https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos" target="_blank" rel="noopener">Página oficial do Disque 100<span class="sr"> (abre em nova aba)</span></a></div>
+      <div class="card"><span class="kicker">Mulheres</span><h3>Ligue 180</h3><p>Central de Atendimento à Mulher: orienta e encaminha mulheres em situação de violência. Gratuita, 24 horas, todos os dias.</p><a href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener">Página oficial do Ligue 180<span class="sr"> (abre em nova aba)</span></a></div>
+    </div>
+    <p class="small">Links verificados em 21 de outubro de 2026.</p>
+
+    <h2 class="secth" id="denuncie-provas">Como reunir informações com honestidade e segurança</h2>
+    <div class="acc">
+      <details open><summary>O que fazer</summary><ul><li>Anote data, hora, local e nome do órgão. Se souber, o nome ou o cargo de quem atendeu.</li><li>Guarde protocolos, recibos, e-mails, mensagens e fotos de locais públicos.</li><li>Escreva os fatos em ordem, com datas, enquanto ainda estão frescos na memória.</li><li>Guarde o número de protocolo da sua manifestação.</li></ul></details>
+      <details><summary>O que não fazer</summary><ul><li>Não invada sistemas, não pegue documentos sigilosos e não grave conversas de que você não participa. Provas obtidas de forma ilícita podem ser descartadas e trazer problemas para você.</li><li>Não apresente suspeitas como fatos comprovados. Escreva “presenciei”, “recebi”, “me disseram” e deixe a apuração com o órgão.</li><li>Acusar alguém de crime sabendo que a pessoa é inocente também é crime (Código Penal, art. 339).</li></ul></details>
+    </div>
+    <p class="aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações não substituem a orientação de advogado, defensor público ou órgão competente. Este site não é canal oficial de denúncias e não garante resultados.</p>
+    <p class="small">Fontes: Lei 13.460/2017 (direitos do usuário de serviços públicos e ouvidorias); Decreto 9.492/2018; Lei 13.726/2018; Código Penal, arts. 316, 317 e 339. Revisado em outubro de 2026.</p>
+  </div>
+</div>
+
+<!-- ================= PRIVACIDADE ================= -->
+<div data-page="privacidade" hidden>
+  <div class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Você está em"><a href="#inicio">Início</a> / Sobre / <span aria-current="page">Privacidade</span></nav><h1>Política de privacidade</h1><p>O que acontece com os seus dados quando você usa este site, explicado sem complicação.</p></div></div>
+  <div class="wrap narrow body">
+    <p class="notice"><strong>Resumo:</strong> não pedimos cadastro, não usamos cookies, ferramentas de análise nem publicidade, e as respostas dos questionários não saem do seu aparelho.</p>
+
+    <h2 class="secth" id="priv-aparelho">O que fica no seu aparelho</h2>
+    <ul class="plain-list">
+      <li><strong>Checklist “Acompanhe seu advogado”:</strong> as caixas que você marca ficam guardadas no armazenamento do seu navegador (localStorage), para não se perderem quando você volta. Só o seu aparelho tem essa informação. Para apagar, desmarque as caixas ou limpe os dados do site nas configurações do navegador.</li>
+      <li><strong>Questionários e buscas:</strong> “Meu caso cabe no Juizado?”, “Onde devo buscar ajuda?”, a busca do topo e a do glossário funcionam dentro do seu navegador. As respostas não são salvas nem enviadas a ninguém.</li>
+    </ul>
+
+    <h2 class="secth" id="priv-servidor">O que o servidor recebe</h2>
+    <p>Como acontece com qualquer site, o servidor que hospeda o projeto recebe dados técnicos a cada acesso: endereço IP, data e hora, página pedida e tipo de navegador. Esses registros servem para o site funcionar e para segurança, e podem ser guardados pelo serviço de hospedagem pelo prazo definido por ele e pela lei. Não usamos esses dados para identificar visitantes.</p>
+
+    <h2 class="secth" id="priv-terceiros">Outros serviços</h2>
+    <ul class="plain-list">
+      <li>As fontes e as imagens são servidas pelo próprio site. Nenhum serviço de terceiros é carregado quando você abre a página.</li>
+      <li>Ao clicar num link para um site oficial (gov.br, Defensorias, Ministérios Públicos), você sai deste site e passa a seguir a política daquele órgão.</li>
+      <li>Os botões “Buscar site oficial” abrem uma busca no Google. O botão “Sair rápido” abre uma página do Google. Nesses casos, vale a política do Google.</li>
+    </ul>
+
+    <h2 class="secth" id="priv-contato">Contato e seus direitos</h2>
+    <p>A Lei Geral de Proteção de Dados (Lei 13.709/2018, art. 18) garante, entre outros, o direito de saber se seus dados são tratados, de acessá-los, de corrigi-los e de pedir que sejam apagados. Como não guardamos dados que identifiquem você, não há cadastro a consultar: o que fica no seu aparelho está sob o seu controle.</p>
+    <p>Ainda não temos formulário de contato. Antes que ele entre no ar, esta política será atualizada para explicar quais dados ele recebe, para quê e por quanto tempo.</p>
+    <p class="small">Versão de outubro de 2026.</p>
   </div>
 </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <div><h3>Justiça ao Alcance de Todos</h3><p><em>A informação é o primeiro passo para o seu direito.</em></p><p style="margin-top:.5rem">Projeto educativo e orientativo. Não substitui a orientação de um defensor público ou advogado.</p></div>
-    <div><h3>Comece aqui</h3><ul><li><a href="#meucaso">Meu caso cabe no Juizado?</a></li><li><a href="#justica">Como a Justiça funciona</a></li><li><a href="#defensoria">Encontre a Defensoria</a></li></ul></div>
-    <div><h3>Base legal</h3><p>Constituição Federal (art. 5º, XXXV e LXXIV; arts. 37 e 134), CPC (arts. 98 a 102), LC 80/1994, Leis 9.099/1995, 10.259/2001 e 12.153/2009, Decreto 20.910/1932 e Lei 8.906/1994. <a href="#sobre-base">Ver detalhes</a>.</p></div>
+    <p class="foot-aviso"><strong>Projeto educativo, gratuito e independente.</strong> As informações têm finalidade informativa e não substituem a orientação de advogado, defensor público ou órgão competente. O site não é um canal oficial de denúncias e não garante resultados jurídicos ou administrativos.</p>
+    <div><h3>Justiça ao Alcance de Todos</h3><p><em>A informação é o primeiro passo para o seu direito.</em></p><p style="margin-top:.5rem">Não é um site do governo nem do Poder Judiciário. Conteúdo revisado em outubro de 2026.</p></div>
+    <div><h3>Comece aqui</h3><ul><li><a href="#ondebuscar">Onde devo buscar ajuda?</a></li><li><a href="#meucaso">Meu caso cabe no Juizado?</a></li><li><a href="#defensoria">Encontre a Defensoria</a></li><li><a href="#denuncie">Como denunciar irregularidades</a></li></ul></div>
+    <div><h3>Sobre</h3><ul><li><a href="#sobre">Sobre o projeto</a></li><li><a href="#sobre-base">Base legal</a></li><li><a href="#sobre-fontes">Fontes e atualização</a></li><li><a href="#sobre-acess">Acessibilidade</a></li><li><a href="#privacidade">Privacidade</a></li></ul></div>
   </div>
 </footer>
 

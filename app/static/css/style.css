@@ -9,6 +9,14 @@ img{max-width:100%;height:auto}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 a,button,input,select,label,summary{touch-action:manipulation}
 
+/* Fontes servidas pelo próprio site (antes vinham do Google Fonts, que recebia o IP de cada visitante).
+   Arquivos em static/fonts; licença em static/fonts/LICENCAS.txt */
+@font-face{font-family:"Atkinson Hyperlegible";src:url(../fonts/atkinson-400.woff2) format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";src:url(../fonts/atkinson-700.woff2) format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";src:url(../fonts/atkinson-400-italic.woff2) format("woff2");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url(../fonts/source-serif-4.woff2) format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url(../fonts/source-serif-4.woff2) format("woff2");font-style:normal;font-weight:800;font-display:swap}
+
 /* A Atkinson Hyperlegible desenha o 0 cortado por um traço. Esta fonte (só o caractere "0",
    tirado da Public Sans) entra antes dela e troca o zero por um zero normal no site inteiro. */
 @font-face{font-family:"Zero Normal";src:url(../fonts/zero.woff2) format("woff2");font-style:normal;font-weight:100 900;unicode-range:U+30;font-display:swap}
@@ -33,13 +41,15 @@ a{color:var(--link);text-underline-offset:3px}
 /* anel de foco: azul-marinho no fundo claro, dourado no fundo escuro (contraste ≥ 3:1) */
 :root{--focus:var(--navy)}
 header.site,nav.main,.hero,.band,footer{--focus:var(--gold)}
+/* o main.js põe o foco no título ao trocar de página (para o leitor de tela anunciar); não é clicável, então sem moldura */
+h1[tabindex="-1"]:focus{outline:none}
 h1,h2,h3{font-family:var(--f-display);line-height:1.2;text-wrap:balance;margin:0}
 p{margin:0}
 .wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .narrow{max-width:46rem}
 .rule{width:3.2rem;height:6px;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold)}
 .center{text-align:center}.center .rule{margin:0 auto}
-.small{font-size:.9rem;color:var(--muted)}
+.small{font-size:.95rem;color:var(--muted)}
 .icon{width:1.25rem;height:1.25rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 /* faixa de aviso */
@@ -71,15 +81,26 @@ nav.main::before,nav.main::after{position:absolute;top:0;bottom:0;width:2.6rem;d
 nav.main::before{content:"‹";left:0;padding-left:.35rem;background:linear-gradient(to right,var(--navy-2) 45%,transparent)}
 nav.main::after{content:"›";right:0;justify-content:flex-end;padding-right:.35rem;background:linear-gradient(to left,var(--navy-2) 45%,transparent)}
 nav.main.more-left::before,nav.main.more-right::after{opacity:1}
-nav.main .wrap{overflow-x:auto;scroll-padding-inline:2.8rem}
-nav.main a:focus-visible{outline-offset:-3px}
-nav.main ul{display:flex;gap:.2rem;list-style:none;margin:0;padding:0;white-space:nowrap}
-nav.main a{display:block;padding:.85rem .85rem;color:var(--navy-ink);text-decoration:none;font-weight:700;font-size:.95rem;border-bottom:3px solid transparent}
-nav.main a[aria-current="page"]{border-bottom-color:var(--gold)}
-nav.main a:hover{background:rgba(255,255,255,.08)}
+/* barra de rolagem fina e nas cores do site (escondê-la tiraria o jeito de rolar com o mouse) */
+nav.main .wrap{overflow-x:auto;scroll-padding-inline:2.8rem;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.4) transparent}
+nav.main .menu>li>a:focus-visible,.grp>button:focus-visible{outline-offset:-3px}
+.menu{display:flex;gap:.2rem;list-style:none;margin:0;padding:0;white-space:nowrap}
+.menu>li>a,.grp>button{display:block;padding:.85rem .85rem;color:var(--navy-ink);text-decoration:none;font:inherit;font-weight:700;font-size:.95rem;background:none;border:0;border-bottom:3px solid transparent;cursor:pointer}
+.grp>button::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.45em;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-.2em) rotate(45deg);transition:transform .15s}
+.grp>button[aria-expanded="true"]::after{transform:translateY(.05em) rotate(-135deg)}
+.menu>li>a[aria-current="page"],.grp.cur>button{border-bottom-color:var(--gold)}
+.menu>li>a:hover,.grp>button:hover,.grp>button[aria-expanded="true"]{background:rgba(255,255,255,.08)}
+/* painel de cada área: posicionado em relação ao nav.main (o .wrap que rola não é posicionado, então não o corta) */
+.panel{position:absolute;left:0;right:0;top:100%;z-index:40;list-style:none;margin:0;background:var(--bg);border-bottom:4px solid var(--gold);box-shadow:0 18px 30px rgba(10,20,40,.22);white-space:normal;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr));gap:.4rem 1.2rem;padding:1rem max(16px,calc((100% - 68rem)/2 + 16px))}
+.panel a{display:block;padding:.7rem .8rem;border-radius:8px;color:var(--navy);font-weight:700;text-decoration:none;--focus:var(--navy)}
+.panel a small{display:block;font-weight:400;color:var(--muted);font-size:.88rem;margin-top:.1rem}
+.panel a:hover{background:var(--bg-alt)}
+.panel a[aria-current="page"]{background:var(--bg-alt);box-shadow:inset 4px 0 0 var(--gold)}
 
 /* páginas */
 [data-page]{padding-bottom:3rem}
+/* o início termina na faixa azul da missão, colada no rodapé */
+[data-page="inicio"]{padding-bottom:0}
 /* cabeçalho das páginas internas: azul-marinho sobre a textura da fachada de vidro */
 .pagehead{--focus:var(--gold);color:var(--navy-ink);background:linear-gradient(100deg,rgba(19,43,79,.97) 35%,rgba(19,43,79,.86)),url(../img/fachada.jpg) center/cover var(--navy);padding-block:2.6rem 2.2rem}
 .pagehead .wrap{display:grid;gap:.7rem}
@@ -196,7 +217,8 @@ legend{font-weight:700;margin-bottom:.4rem;font-size:1.05rem}
 .check input{margin-top:.3rem;accent-color:var(--ok);flex:none;width:1.05rem;height:1.05rem}
 .check label:has(input:checked){border-color:var(--ok);background:var(--ok-bg)}
 .prompt{background:var(--bg-alt);border-radius:8px;padding:1rem;font-size:.95rem;white-space:pre-wrap;overflow-wrap:anywhere}
-select,input[type=search].plain{font:inherit;padding:.6rem .75rem;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0;max-width:100%}
+/* borda dos campos com contraste ≥ 3:1 sobre o branco (WCAG 1.4.11) */
+select,input[type=search].plain{font:inherit;padding:.6rem .75rem;border-radius:6px;border:1px solid #7b8798;background:var(--bg);color:var(--ink);min-width:0;max-width:100%}
 .row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 .letters{display:flex;flex-wrap:wrap;gap:.3rem}
 .letters a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border:1px solid var(--line);border-radius:6px;text-decoration:none;font-weight:700;color:var(--navy)}
@@ -209,7 +231,33 @@ dd{margin:.1rem 0 0}
 @media (max-width:700px){.campanha{grid-template-columns:1fr}}
 
 footer{background:var(--navy);color:var(--navy-ink);border-top:4px solid var(--gold)}
-footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.6rem;padding-block:2.2rem 2.6rem;font-size:.92rem}
+/* três colunas no computador, uma no celular (auto-fit deixava uma quarta coluna vazia) */
+footer .wrap{display:grid;grid-template-columns:1fr;gap:1.6rem;padding-block:2.2rem 2.6rem;font-size:.92rem}
+@media (min-width:48rem){footer .wrap{grid-template-columns:repeat(3,1fr)}}
+/* linha divisória na largura toda; o texto continua limitado a 56rem */
+.foot-aviso{grid-column:1/-1;padding:0 max(0px,calc(100% - 56rem)) 1.4rem 0;border-bottom:1px solid rgba(255,255,255,.2);font-size:.95rem}
+
+/* aviso educativo nas páginas de orientação: discreto, mas legível */
+.aviso{border:1px solid var(--line);border-left:4px solid var(--navy);background:var(--bg-alt);padding:.8rem 1rem;border-radius:4px;font-size:.95rem}
+.plain-list{margin:0;padding-left:1.15rem;display:grid;gap:.5rem}
+/* links que abrem outro site: seta visual (o texto para leitor de tela vem do .sr no HTML) */
+a[target="_blank"]::after{content:" ↗";content:" ↗" / "";font-size:.85em}
+
+/* questionário "Onde devo buscar ajuda?" */
+.guia{border:2px solid var(--navy);border-radius:12px;padding:1.2rem;display:grid;gap:1rem;background:var(--bg)}
+.guia h2{font-size:1.3rem;color:var(--navy)}
+.guia h2:focus{outline:none}
+.guia .passo{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.picks{display:grid;gap:.5rem}
+.pick{display:block;width:100%;text-align:left;font:inherit;padding:.75rem .9rem;border:1px solid #7b8798;border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer}
+.pick small{display:block;color:var(--muted);font-size:.88rem}
+.pick:hover{border-color:var(--navy);background:var(--bg-alt)}
+.canais{display:grid;gap:.7rem}
+.canal{border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:.8rem 1rem;display:grid;gap:.3rem}
+.canal h3{font-size:1.08rem;color:var(--navy)}
+.urgente{background:var(--no-bg);border:1px solid #efc3c3;border-radius:10px;padding:1rem;display:grid;gap:.6rem}
+.urgente ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.urgente b{font-family:var(--f-display);font-size:1.6rem;color:var(--no);display:inline-block;min-width:3.2rem}
 footer a{color:var(--navy-ink)}
 footer h3{font-size:1rem;color:var(--gold);margin-bottom:.4rem}
 footer ul{list-style:none;margin:0;padding:0;display:grid}
@@ -221,6 +269,10 @@ footer li a{display:inline-flex;align-items:center;min-height:44px}
 .exit:hover{background:#7d1a1e}
 /* espaço no fim da página para o botão fixo não cobrir o conteúdo */
 [data-page="mulheres"]{padding-bottom:6rem}
+/* no celular o botão fica mais compacto e cobre menos texto, sem ficar abaixo de 44px */
+@media (max-width:640px){.exit{min-height:44px;padding:.5rem .9rem;font-size:.95rem}}
+/* item focado pelo teclado para acima do botão fixo, sem ficar escondido (WCAG 2.4.11) */
+html:has([data-page="mulheres"]:not([hidden])){scroll-padding-bottom:5rem}
 .sos{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;background:#fbe7e7;border:1px solid #efc3c3;border-radius:12px;padding:1.1rem}
 .sos b{display:block;font-family:var(--f-display);font-size:2.2rem;line-height:1;color:#9b2226}
 /* Impressão: imprime só a página aberta, sem menus */

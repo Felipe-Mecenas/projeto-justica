@@ -5,9 +5,7 @@
       "command": "cmd",
       "args": [
         "/c",
-        "npx",
-        "-y",
-        "@playwright/mcp@latest"
+        "playwright-mcp"
       ],
       "env": {}
     }
