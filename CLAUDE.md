@@ -38,5 +38,5 @@ Portal educativo, gratuito e independente que explica a Justiça brasileira em l
 ## Pendências conhecidas
 
 - Formulário de contato: aguardando o e-mail próprio do projeto. Usar SMTP com credenciais em variáveis de ambiente, sem dependências novas.
-- Hospedagem não definida; o repositório ainda não tem remote no GitHub.
+- Hospedagem não definida. Código no GitHub, repositório privado: https://github.com/Felipe-Mecenas/projeto-justica (branch `master`).
 - MPs de AL, PA, PI e RR sem link confirmado (os sites não responderam nos testes).
