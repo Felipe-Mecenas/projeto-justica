@@ -93,46 +93,9 @@
           </div>
         </div>
       </div>
-      <figure>
-        <svg viewBox="0 0 560 380" role="img" aria-label="Ilustração de uma família de mãos dadas subindo os degraus de um fórum">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b5287"/><stop offset="1" stop-color="#f6c96a"/></linearGradient>
-            <radialGradient id="glow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#fff3c9"/><stop offset="1" stop-color="#fff3c9" stop-opacity="0"/></radialGradient>
-          </defs>
-          <rect width="560" height="380" fill="url(#sky)"/>
-          <circle cx="280" cy="210" r="170" fill="url(#glow)"/>
-          <!-- fórum -->
-          <g fill="#f4efe4">
-            <polygon points="110,120 280,58 450,120"/>
-            <rect x="120" y="120" width="320" height="14"/>
-            <rect x="130" y="134" width="300" height="10" fill="#e5dccb"/>
-            <rect x="148" y="144" width="20" height="132"/><rect x="198" y="144" width="20" height="132"/>
-            <rect x="342" y="144" width="20" height="132"/><rect x="392" y="144" width="20" height="132"/>
-            <rect x="120" y="276" width="320" height="10"/>
-          </g>
-          <polygon points="140,118 280,70 420,118" fill="#e5dccb"/>
-          <g transform="translate(280 100)" stroke="#132b4f" stroke-width="3" fill="none" stroke-linecap="round"><path d="M0-16v28M-14-8h28M-14-8l-7 12a7 6 0 0 0 14 0zM14-8l-7 12a7 6 0 0 0 14 0zM-8 12h16"/></g>
-          <rect x="236" y="168" width="88" height="108" rx="44" ry="44" fill="#ffe7a3"/>
-          <rect x="236" y="212" width="88" height="64" fill="#ffe7a3"/>
-          <g fill="#d9cfbb"><rect x="100" y="286" width="360" height="12"/><rect x="84" y="298" width="392" height="12" fill="#cbbfa8"/><rect x="66" y="310" width="428" height="14" fill="#bcae95"/></g>
-          <rect y="324" width="560" height="56" fill="#9bb07a"/>
-          <path d="M240 380 C 262 350, 276 340, 280 324 L 280 324 C 284 340, 298 350, 320 380Z" fill="#e9dfc8"/>
-          <!-- família (de costas, olhando o fórum) -->
-          <g fill="#132b4f">
-            <circle cx="236" cy="268" r="13"/><path d="M220 334c0-28 6-52 16-52s16 24 16 52z"/>
-            <circle cx="324" cy="262" r="14"/><path d="M306 334c0-30 7-56 18-56s18 26 18 56z"/>
-            <circle cx="280" cy="292" r="9"/><path d="M270 334c0-18 4-32 10-32s10 14 10 32z"/>
-            <circle cx="358" cy="300" r="7"/><path d="M350 334c0-14 3-26 8-26s8 12 8 26z"/>
-          </g>
-          <g stroke="#132b4f" stroke-width="5" stroke-linecap="round"><path d="M250 300 268 310M292 310 308 300M340 300 352 312"/></g>
-        </svg>
+      <figure class="hero-photo">
+        <img src="{{ url_for('static', filename='img/praca.jpg') }}" width="844" height="1020" fetchpriority="high" decoding="async" alt="Praça vista do alto, em preto e branco: pessoas e uma família de mãos dadas atravessam o piso geométrico; em primeiro plano, um homem veste uma camiseta com a frase Justiça é para todos.">
       </figure>
-    </div>
-  </section>
-
-  <section class="poster" aria-label="Campanha">
-    <div class="wrap">
-      <img src="{{ url_for('static', filename='img/campanha.jpg') }}" width="800" height="800" loading="lazy" decoding="async" alt="Campanha Justiça ao Alcance de Todos: um homem pensativo com dúvidas sobre seus direitos, diante de um muro de barreiras (informação limitada, burocracia, desconhecimento de direitos, distância, falta de recursos) e um caminho iluminado até o tribunal.">
     </div>
   </section>
 
@@ -149,7 +112,6 @@
         <a class="act" href="#passos-estado"><span class="dot"><svg class="icon"><use href="#i-house"/></svg></span><span class="t">Fui prejudicado pelo poder público<small>Prefeitura, Estado, União</small></span></a>
         <a class="act" href="#glossario"><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span><span class="t">Consulte o glossário<small>As palavras do processo, sem complicação</small></span></a>
         <a class="act" href="#mulheres"><span class="dot"><svg class="icon"><use href="#i-shield"/></svg></span><span class="t">Direitos das Mulheres<small>Violência doméstica, medida protetiva, Ligue 180</small></span></a>
-        <a class="act" href="#sobre"><span class="dot"><svg class="icon"><use href="#i-q"/></svg></span><span class="t">Conheça o projeto<small>Missão e valores</small></span></a>
       </div>
     </div>
   </section>
