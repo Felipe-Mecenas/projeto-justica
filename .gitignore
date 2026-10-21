@@ -9,3 +9,9 @@ __pycache__/
 
 # Capturas e snapshots dos testes com Playwright
 .playwright-mcp/
+
+# Atalhos das skills instaladas com "npx skills add" (apontam para .agents/skills
+# com o caminho desta máquina; em outro computador, reinstale pelo skills-lock.json)
+.claude/skills/accessibility
+.claude/skills/find-skills
+.claude/skills/web-design-guidelines
